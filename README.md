@@ -13,6 +13,11 @@ npm start
 ```
 Server running at [localhost:1337](http://localhost:1337/)
 
+### Screenshots
+
+You can check the [screenshots](screenshots) repertory to see how the app looks like but keep in mind that there is no database mockups.
+The Blueprint Editor is the main interface. Its very purpose is a visual programming by interconnecting Elements. The screenshot is quite limited.
+
 ### Author
 
 **[Jonathan Piquard](https://github.com/JonathanPiquard)**
