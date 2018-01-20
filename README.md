@@ -7,6 +7,7 @@ Web application of Computer-assisted Maintenance Management, dynamic and intuiti
 ```
 npm install
 bower install
+grunt //Sass will require Ruby installed
 //start mongodb
 npm start
 ```
