@@ -13,6 +13,14 @@ npm start
 ```
 Server running at [localhost:1337](http://localhost:1337/)
 
+### How to get to the Login / Register page
+
+[localhost:1337/#/auth](http://localhost:1337/#/auth)
+
+#### Note
+[localhost:1337](http://localhost:1337/) will redirects to  [localhost:1337/home](http://localhost:1337/home), a placeholder page that invites you to subscribe to any news before the alpha begins.
+You can click, inside the page, on 'GMAO Tailor' (underlined) to get to [localhost:1337/#/auth](http://localhost:1337/#/auth)
+
 ### Screenshots
 
 You can check the [screenshots](screenshots) repertory to see how the app looks like but keep in mind that there is no database mockups.
