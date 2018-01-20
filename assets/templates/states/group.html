@@ -1,0 +1,335 @@
+
+<div id="group"> <!-- GROUP -->
+
+  <md-content>
+
+      <md-toolbar class="md-error" layout="row">
+        <div class="md-toolbar-tools">
+          <span>Group</span>
+          <span flex></span>
+          <md-button ng-if="group._id" ui-sref="blueprints-private({ selectCategory: 'groups', searchGroups: group._id, searchGroupsSelect: 'groupId.blueprint.read' })">
+            <md-tooltip md-direction="left">Blueprints</md-tooltip>
+            <i class="fa fa-map-o" aria-hidden="true"></i>
+          </md-button>
+          <md-button ng-if="group._id" ui-sref="elements-private({ selectCategory: 'groups', searchGroups: group._id, searchGroupsSelect: 'groupId.blueprint.read' })">
+            <md-tooltip md-direction="left">Instances</md-tooltip>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+          </md-button>
+          <md-button ng-if="group._id && currentUser._id === group.author._id" ng-click="deleteGroup($event)">
+            <md-tooltip md-direction="left">Delete Group</md-tooltip>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-progress-linear md-mode="determinate" value="{{avatarProgress}}"></md-progress-linear>
+
+      <md-tabs flex md-selected="current.tab" md-no-pagination md-dynamic-height md-stretch-tab='always' md-center-tabs>
+
+
+
+        <md-tab> <!-- Informations -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Informations</md-tooltip>
+            <i class="fa fa-sliders" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <form name="informationsForm" autocomplete="off">
+              <md-content class="padding-content" layout="column">
+
+                <avatar></avatar>
+
+                <md-input-container class="md-block">
+                  <label>Name</label>
+                  <input type='string' name="name" ng-model='group.name' ng-maxlength="25" required>
+                  <div ng-messages="informationsForm.name.$error" ng-show="informationsForm.name.$invalid && informationsForm.name.$touched">
+                    <div ng-message="required" ng-show="informationsForm.name.$error.required">
+                      This is required.
+                    </div>
+                    <div ng-message="maxlength" ng-show="informationsForm.name.$error.maxlength">
+                      This is too long : maximum 25.
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Description</label>
+                  <textarea name="description" rows="1" ng-model='group.description' ng-maxlength="1000"></textarea>
+                  <div ng-messages="informationsForm.description.$error" ng-show="informationsForm.description.$invalid">
+                    <div ng-message="maxlength" ng-show="informationsForm.description.$error.maxlength">The description is too long : maximum 1000.</div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container>
+                  <label>Visibility</label>
+                  <md-select ng-model="group.visibility" aria-label='If users which are not members can see the group'>
+                    <md-option selected value='private'>
+                      Private (only members can see the group)
+                    </md-option>
+                    <md-option value='public'>
+                      Public (everyone can see the group)
+                    </md-option>
+                  </md-select>
+                </md-input-container>
+
+                <md-chips
+                  class="tags"
+                  name="tags"
+                  ng-model="group.tags"
+                  placeholder="Tags"
+                  delete-button-label="Remove Tag"
+                  delete-hint="Press delete to remove tag"
+                  secondary-placeholder="+Tag"
+                  md-enable-chip-edit="true"
+                  md-max-chips="30">
+                </md-chips>
+                <div ng-messages="informationsForm.tags.$error" ng-show="informationsForm.tags.$invalid && informationsForm.tags.$touched">
+                  <div ng-message="md-max-chips">There are too many tags : maximum 30.</div>
+                </div>
+
+                <md-button class="md-raised md-success" type="submit" ng-disabled="informationsForm.$invalid" ng-click="groupSubmit()">
+                  Save !
+                </md-button>
+
+              </md-content>
+            </form>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- Members -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Members</md-tooltip>
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+
+              <md-list flex>
+                <md-subheader class="md-no-sticky">Author</md-subheader>
+                <md-list-item class="md-2-line">
+                  <img ng-src="/avatars/users/{{group.author._id}}" class="md-avatar" />
+                  <div class="md-list-item-text" layout="column">
+                    <h3>{{group.author.name}}</h3>
+                    <p>Author</p>
+                  </div>
+                </md-list-item>
+
+                <md-subheader class="md-no-sticky">Members ({{group.members.length}})</md-subheader>
+                <div layout="row" class="search" ng-show="group.members.length !== 0">
+                  <md-input-container md-no-float class="md-block flex">
+                    <input ng-disabled='group.members.length === 0' ng-model="search.text.members" placeholder="Search ...">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>by</label>
+                    <md-select ng-disabled='group.members.length === 0' ng-model="search.select.members" aria-label='Search a member ...'>
+                      <md-option selected value='$'>
+                        All
+                      </md-option>
+                      <md-option value='user.name'>
+                        Name
+                      </md-option>
+                      <md-option value='levelName'>
+                        Level
+                      </md-option>
+                      <md-option value='user._id'>
+                        Id
+                      </md-option>
+                      <md-option value='level'>
+                        Level Id
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <md-list-item class="md-2-line" ng-repeat="member in group.members | filter:searchFilter(search.select.members, search.text.members)">
+                  <img ng-src="/avatars/users/{{member.user._id}}" class="md-avatar" />
+                  <div class="md-list-item-text" layout="column">
+                    <h3>{{member.user.name}}</h3>
+                    <p>{{member.levelName}}</p>
+                    <div class="actions">
+                      <md-button ng-click="loadMember(member)">
+                        <md-tooltip md-direction="left">Edit member</md-tooltip>
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-click="removeMember(member)">
+                        <md-tooltip md-direction="left">Remove member</md-tooltip>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-list-item>
+              </md-list>
+
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- Add Member -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Add Member</md-tooltip>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+              <form name='addMemberForm' class="padding-content" autocomplete="off">
+
+                <div layout="row">
+                  <md-chips flex class="md-contact-chips" ng-model="addMember.members" md-require-match="true" md-autocomplete-snap>
+                    <md-autocomplete ng-disabled="addMember.members[0]" ng-show="!addMember.members[0]" md-menu-class="md-contact-chips-suggestions" md-selected-item="addMember.selectedItem" md-search-text="addMember.searchText"
+                    md-items="user in Contacts.allUsers | filter:addMember.filter" md-no-cache="true" md-min-length="0"
+                    md-autoselect="true" placeholder="User">
+                      <div class="md-contact-suggestion">
+                        <img ng-src="avatars/users/{{user._id}}" alt="{{user.name}}" />
+                        <span class="md-contact-name">{{user.name}}</span>
+                      </div>
+                    </md-autocomplete>
+                    <md-chip-template>
+                      <div class="md-contact-avatar"><img ng-src="avatars/users/{{$chip._id}}" /></div>
+                      <div class="md-contact-name">{{$chip.name}}</div>
+                    </md-chip-template>
+                  </md-chips>
+
+                  <md-input-container>
+                    <label>Level</label>
+                    <md-select ng-model="addMember.level" aria-label='Select member level'>
+                      <md-option ng-repeat="level in group.levels" value='{{level._id}}'>
+                        {{level.name}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="!addMember.valid()" ng-click="addMember.submit()">
+                  {{(findMember(addMember.members[0]._id)) ? 'Update' : 'Add'}} User
+                </md-button>
+
+              </form>
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- Levels -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Levels</md-tooltip>
+            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+
+              <md-list flex>
+                <md-subheader class="md-no-sticky">Levels ({{group.levels.length}})</md-subheader>
+                <div layout="row" class="search" ng-show="group.levels.length !== 0">
+                  <md-input-container md-no-float class="md-block flex">
+                    <input ng-disabled='group.levels.length === 0' ng-model="search.text.levels" placeholder="Search ...">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>by</label>
+                    <md-select ng-disabled='group.levels.length === 0' ng-model="search.select.levels" aria-label='Search a level ...'>
+                      <md-option selected value='$'>
+                        All
+                      </md-option>
+                      <md-option value='name'>
+                        Name
+                      </md-option>
+                      <md-option value='description'>
+                        Description
+                      </md-option>
+                      <md-option value='_id'>
+                        Id
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <md-list-item class="md-2-line" ng-repeat="level in group.levels | filter:searchFilter(search.select.levels, search.text.levels)">
+                  <div class="md-list-item-text" layout="column">
+                    <h3>{{level.name}}</h3>
+                    <p>{{level.description}}</p>
+                    <div class="actions">
+                      <md-button ng-click="setDefaultLevel(level)" ng-class="{ 'warn': level._id === group.defaultLevel }">
+                        <md-tooltip md-direction="left">Default level</md-tooltip>
+                        <i class="fa fa-ticket" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-click="loadLevel(level)">
+                        <md-tooltip md-direction="left">Edit level</md-tooltip>
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-click="removeLevel(level)">
+                        <md-tooltip md-direction="left">Remove level</md-tooltip>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-list-item>
+              </md-list>
+
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- Add Level -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Add Level</md-tooltip>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+              <form name='addLevelForm' id="addLevelForm" autocomplete="off">
+
+                <md-input-container class="md-block">
+                  <label>Name</label>
+                  <input type='string' name="name" ng-model='addLevel.level.name' ng-maxlength="25" required>
+                  <div ng-messages="addLevelForm.name.$error" ng-show="addLevelForm.name.$invalid && addLevelForm.name.$touched">
+                    <div ng-message="required" ng-show="addLevelForm.name.$error.required">
+                      This is required.
+                    </div>
+                    <div ng-message="maxlength" ng-show="addLevelForm.name.$error.maxlength">
+                      This is too long : maximum 25.
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Description</label>
+                  <textarea name="description" rows="1" ng-model='addLevel.level.description' ng-maxlength="300"></textarea>
+                  <div ng-messages="addLevelForm.description.$error" ng-show="addLevelForm.description.$invalid">
+                    <div ng-message="maxlength" ng-show="addLevelForm.description.$error.maxlength">The description is too long : maximum 300.</div>
+                  </div>
+                </md-input-container>
+
+
+                <h5>Rights :
+                  <md-tooltip md-direction="top">All the rights the user has</md-tooltip>
+                </h5>
+
+                <div class="rightsSubject" ng-repeat="rightsSubject in rightsSubjects" layout="column">
+
+                  <md-subheader class="md-no-sticky flex">{{rightsSubject}}</md-subheader>
+
+                  <div layout="row">
+                    <md-checkbox ng-checked="addLevel.isChecked(rightsSubject, right)" ng-click="addLevel.toggleChecked(rightsSubject, right)" ng-repeat="right in rights[rightsSubject]">
+                      {{right.name}}
+                    </md-checkbox>
+                  </div>
+                </div>
+
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="addLevelForm.$invalid" ng-click="addLevel.submit()">
+                  {{(addLevel.level._id) ? 'Update' : 'Add'}} Level
+                </md-button>
+
+              </form>
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+
+
+      </md-tabs>
+
+  </md-content>
+
+</div>

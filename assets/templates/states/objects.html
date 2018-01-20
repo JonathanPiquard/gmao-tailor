@@ -1,0 +1,66 @@
+
+<div id="objects"> <!-- OBJECTS -->
+
+  <md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+      <span class="capitalize">{{name}}</span>
+      <md-select class="capitalize" ng-model="selectCategory" aria-label='search {{name}} from ...'>
+        <md-option value=''>
+          All
+        </md-option>
+        <md-option class="capitalize" ng-repeat="category in categories" value='{{category}}'>
+          {{category}}
+        </md-option>
+      </md-select>
+    </div>
+  </md-toolbar>
+  <md-content flex>
+    <section ng-repeat="category in categories | filter:selectCategory">
+      <md-list flex>
+        <md-subheader class="md-no-sticky capitalize">{{category}} {{name}}</md-subheader>
+        <div layout="row" class="search">
+          <md-input-container md-no-float class="md-block flex">
+            <input ng-disabled='objects[category].length === 0' ng-model="search.text[category]" placeholder="Search ...">
+          </md-input-container>
+          <md-input-container>
+            <label>by</label>
+            <md-select ng-disabled='objects[category].length === 0' ng-model="search.select[category]" aria-label='search objects ...'>
+              <md-option value='$'>
+                All
+              </md-option>
+              <md-option value='name'>
+                Name
+              </md-option>
+              <md-option value='description'>
+                Description
+              </md-option>
+              <md-option value='tags'>
+                Tags
+              </md-option>
+              <md-option value='_id'>
+                Id
+              </md-option>
+              <md-option ng-repeat="filter in filters" value='{{filter.value}}'>
+                {{filter.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <md-list-item class="md-3-line" ng-repeat="object in objects[category] | filter:searchFilter(search.select[category], search.text[category])" ng-click="goToObject(object._id)">
+          <img ng-src="/avatars/{{(name === 'groups') ? 'groups/' + object._id : 'users/' + object.author._id}}" class="md-avatar" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{object.name}}</h3>
+            <p>{{object.description}}</p>
+            <p ng-if="object.tags.length > 0">
+              <i class="fa fa-tags" aria-hidden="true"></i>
+              <span>Tags : </span>
+              <span class="tag" ng-repeat="tag in object.tags">{{tag}}</span>
+            </p>
+          </div>
+        </md-list-item>
+        <md-divider ng-if="$index !== categories.length -1"></md-divider>
+      </md-list>
+    </section>
+  </md-content>
+
+</div> <!-- End OBJECTS -->

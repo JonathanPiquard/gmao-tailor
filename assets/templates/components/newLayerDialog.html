@@ -1,0 +1,35 @@
+<md-dialog aria-label="New Layer">
+  <form name='newLayerDialogForm' ng-submit="validate()">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h2>New Layer</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column">
+      <md-input-container>
+        <label>Name</label>
+        <input id="newLayerName" type='string' name='name' ng-model='layer.name' ng-maxlength="25" required>
+        <div ng-messages="newLayerDialogForm.name.$error" ng-show="newLayerDialogForm.name.$invalid && newLayerDialogForm.name.$touched">
+          <div ng-message="required" ng-show="newLayerDialogForm.name.$error.required">
+            This is required.
+          </div>
+          <div ng-message="maxlength" ng-show="newLayerDialogForm.name.$error.maxlength">
+            This is too long : maximum 25.
+          </div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Description</label>
+        <textarea rows="2" name='description' ng-model='layer.description' ng-maxlength="200"></textarea>
+        <div ng-messages="newLayerDialogForm.description.$error" ng-show="newLayerDialogForm.description.$invalid && newLayerDialogForm.description.$touched">
+          <div ng-message="maxlength" ng-show="newLayerDialogForm.description.$error.maxlength">
+            This is too long : maximum 200.
+          </div>
+        </div>
+      </md-input-container>
+    <md-dialog-actions layout='row'>
+      <md-button class='md-raised md-primary' type="submit" id="submit" ng-disabled="newLayerDialogForm.$invalid">Validate</md-button>
+      <md-button class='md-raised md-warn' ng-click="cancel()">Cancel</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

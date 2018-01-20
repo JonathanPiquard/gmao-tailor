@@ -1,0 +1,117 @@
+
+
+//=============================================================================//
+//=============================================================================//
+//                                   ngScroll                                  //
+//=============================================================================//
+//=============================================================================//
+
+.ngscroll
+  overflow: hidden
+  position: relative
+  width: 100%
+  height: 100%
+
+  > .ngscroll-content-container
+    margin-top: 0
+    margin-left: 0
+
+  > .ng-scrollbar-filler
+    position: absolute
+    background-color: #E7E7E7
+    bottom: 0
+    right: 0
+
+  > .ngscrollbar-container
+    transition: background .3s ease-in-out
+    position: absolute
+    background-color: #E7E7E7
+    border-radius: 0
+
+    > .ngscrollbar
+      cursor: default
+      position: absolute
+      background-color: #BFBFBF
+      border-radius: 0
+
+  > .ngscrollbar-container.ngscrollbar-container-x
+    width: 100%
+    bottom: 0
+    left: 0
+
+  > .ngscrollbar-container.ngscrollbar-container-y
+    height: 100%
+    top: 0
+    right: 0
+
+
+.ngscroll.small
+
+  > .ng-scrollbar-filler
+    height: 6px
+    width: 6px
+
+  > .ngscrollbar-container.ngscrollbar-container-x
+    height: 6px
+
+    > .ngscrollbar
+      height: 6px
+
+  > .ngscrollbar-container.ngscrollbar-container-y
+    width: 6px
+
+    > .ngscrollbar
+      width: 6px
+
+
+.ngscroll.medium
+
+  > .ng-scrollbar-filler
+    height: 9px
+    width: 9px
+
+  > .ngscrollbar-container.ngscrollbar-container-x
+    height: 9px
+
+    > .ngscrollbar
+      height: 9px
+
+  > .ngscrollbar-container.ngscrollbar-container-y
+    width: 9px
+
+    > .ngscrollbar
+      width: 9px
+
+
+.ngscroll.large
+
+  > .ng-scrollbar-filler
+    height: 12px
+    width: 12px
+
+  > .ngscrollbar-container.ngscrollbar-container-x
+    height: 12px
+
+    > .ngscrollbar
+      height: 12px
+
+  > .ngscrollbar-container.ngscrollbar-container-y
+    width: 12px
+
+    > .ngscrollbar
+      width: 12px
+
+
+/* scrollbar with overlay : auto hide and show on hover
+.ngscroll.ngscroll-overlay
+
+  > .ngscrollbar-container
+    transition: visibility 0s, opacity .3s ease-in-out
+    visibility: hidden
+    opacity: 0
+
+.ngscroll.ngscroll-overlay:hover
+
+  > .ngscrollbar-container
+    visibility: visible
+    opacity: 1

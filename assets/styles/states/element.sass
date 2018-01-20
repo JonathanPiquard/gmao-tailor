@@ -1,0 +1,78 @@
+
+
+//=============================================================================//
+//=============================================================================//
+//                                   ELEMENT                                   //
+//=============================================================================//
+//=============================================================================//
+
+
+#element
+
+  md-pagination-wrapper.md-center-tabs
+    min-width: 100%
+
+    md-tab-item
+
+      > .fa.fa-indent + .fa.fa-list
+        margin-left: -5px
+
+      > .fa.fa-list + .fa.fa-outdent
+        margin-left: -5px
+
+  > md-content
+    > md-tabs
+      > md-tabs-wrapper
+        > md-tabs-canvas.md-center-tabs .md-tab
+          width: calc(100% / 6)
+          padding: 12px 20px
+
+  md-chips
+    margin-top: 0
+
+  md-list-item
+    min-height: 48px
+
+    > .md-list-item-text
+      margin: 12px auto 12px auto
+
+      > .actions.right
+        top: 0
+
+  form[name="inPropertyForm"], form[name="outPropertyForm"]
+
+    md-content
+      padding-top: 16px
+
+  .padding-content
+
+    > md-switch:last-of-type
+      margin-left: 15px
+
+    > .code-mirror-container
+      margin: 0
+
+    > .category, > .sub-category
+
+      > md-switch
+        margin: auto 5px
+        line-height: inherit
+        height: inherit
+
+      > md-select
+        position: absolute
+        right: 0
+        top: 0
+        bottom: 0
+        padding: 0 0 4px 8px
+        margin: 0
+        background-color: rgb(68, 86, 188)
+
+        > ._md-select-value
+          border-bottom: none
+
+      > md-select.md-default-theme:not([disabled]):focus, md-select:not([disabled]):focus
+
+        ._md-select-value
+          color: rgba(255, 255, 255, 0.87)
+          border-bottom-color: rgba(255, 255, 255, 0.87)

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html ng-app="GMAO Tailor">
+  <head>
+    <title>GMAO Tailor</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+
+    <link type="text/css" rel="stylesheet" href="/styles/bower.min.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/angularApp.css" />
+
+  </head>
+
+  <body ng-controller='AppCtrl'>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+
+    <div id="global-container" layout="column">
+      <header ng-include="'templates/appHeader.html'" ng-controller="AppHeaderCtrl"></header>
+
+      <div id="view-container" layout="row">
+        <div ng-include="'templates/sidenav.html'" ng-controller="SidenavCtrl" ng-if="currentUser"></div>
+
+        <div id='view' ui-view ng-class="{ 'sidenavLeftOpen': sidenavLeft.open && currentUser }"></div>
+      </div>
+
+      <!--
+        <footer ng-include="'templates/appFooter.html'" ng-controller="AppFooterCtrl"></footer>
+      -->
+    </div>
+
+    <script type='text/javascript', src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript', src="/js/bower.min.js"></script>
+    <script type='text/javascript', src="/js/angularApp.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,465 @@
+
+<div layout="row" id='blueprint'>
+
+  <canvas id='blueprintCanvas' resize="true"></canvas>
+  <context-menu></context-menu>
+
+  <md-sidenav class="md-sidenav-right" md-component-id="right" md-is-open='sidenavRight.open' md-whiteframe="2">
+    <md-tabs md-selected="current.tab" md-no-pagination md-dynamic-height md-stretch-tab='always' md-center-tabs>
+
+      <md-tab> <!-- Blueprint -->
+        <md-tab-label>
+          <md-tooltip md-direction="bottom">Blueprint</md-tooltip>
+          <i class="fa fa-map-o" aria-hidden="true"></i>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content layout-padding layout="column">
+            <form name="blueprintForm" layout-fill autocomplete="off">
+
+              <md-input-container md-is-error="blueprintForm.name.$invalid" layout="column" class="md-block">
+                <label>Name</label>
+                <input type='string' name="name" ng-model='blueprint.name' required ng-maxlength="100">
+                <div ng-messages="blueprintForm.name.$error" ng-show="blueprintForm.name.$invalid">
+                  <div ng-message="required" ng-show="blueprintForm.name.$error.required">The name is required.</div>
+                  <div ng-message="maxlength" ng-show="blueprintForm.name.$error.maxlength">The name is too long : maximum 100.</div>
+                </div>
+              </md-input-container>
+
+              <md-input-container layout="column" class="md-block">
+                <label>Description</label>
+                <textarea name="description" rows="1" ng-model='blueprint.description' ng-maxlength="1000"></textarea>
+                <div ng-messages="blueprintForm.description.$error" ng-show="blueprintForm.description.$invalid">
+                  <div ng-message="maxlength" ng-show="blueprintForm.description.$error.maxlength">The description is too long : maximum 1000.</div>
+                </div>
+              </md-input-container>
+
+              <md-chips
+                class="tags"
+                name="tags"
+                ng-model="blueprint.tags"
+                placeholder="Tags"
+                delete-button-label="Remove Tag"
+                delete-hint="Press delete to remove tag"
+                secondary-placeholder="+Tag"
+                md-enable-chip-edit="true"
+                md-max-chips="30">
+              </md-chips>
+              <div ng-messages="blueprintForm.tags.$error" ng-show="blueprintForm.tags.$invalid && blueprintForm.tags.$touched">
+                <div ng-message="md-max-chips">There are too many tags : maximum 30.</div>
+              </div>
+
+              <md-autocomplete
+                  required
+                  md-input-name="versionName"
+                  md-input-maxlength="25"
+                  md-search-text="current.versionName"
+                  md-items="version in blueprint.versions"
+                  md-item-text="version.name"
+                  md-min-length="0"
+                  md-floating-label="Version">
+                <md-item-template>
+                  <span md-highlight-text="version.name" md-highlight-flags="^i">{{version.name}}</span>
+                </md-item-template>
+                <div ng-messages="blueprintForm.version.$error" ng-show="blueprintForm.versionName.$invalid" class='md-input-message-animation'>
+                  <div ng-message="required" ng-show="blueprintForm.versionName.$error.required">
+                    The version must be specified.
+                  </div>
+                  <div ng-message="maxlength" ng-show="blueprintForm.versionName.$error.maxlength">
+                    The version is too long : maximum 25.
+                  </div>
+                </div>
+              </md-autocomplete>
+
+              <md-input-container layout="column" class="md-block">
+                <label>Version Note</label>
+                <textarea name="versionNote" rows="1" ng-model='current.notes' ng-maxlength="1000"></textarea>
+                <div ng-messages="blueprintForm.versionNote.$error" ng-show="blueprintForm.versionNote.$invalid">
+                  <div ng-message="maxlength" ng-show="blueprintForm.versionNote.$error.maxlength">It is too long : maximum 1000.</div>
+                </div>
+              </md-input-container>
+
+              <md-input-container layout="column" class="md-block">
+                <label>TODO</label>
+                <textarea name="todo" rows="1" ng-model='current.todo' ng-maxlength="1000"></textarea>
+                <div ng-messages="blueprintForm.todo.$error" ng-show="blueprintForm.todo.$invalid">
+                  <div ng-message="maxlength" ng-show="blueprintForm.todo.$error.maxlength">It is too long : maximum 1000.</div>
+                </div>
+              </md-input-container>
+
+              <md-button class="md-raised md-success" ng-disabled="blueprintForm.$invalid || !blueprint.userAccess.blueprint.update" ng-click="saveBlueprint()">
+                Save on Blueprint {{current.versionName}}
+              </md-button>
+
+              <md-button class="md-raised md-warn" ng-disabled="current.versionsName.indexOf(current.versionName) === -1 || !blueprint._id" ng-click="loadBlueprint(current.versionName)">
+                Load Blueprint {{current.versionName}}
+              </md-button>
+
+              <span flex></span><!-- fill up the space between top and bottom area -->
+
+              <md-button class="md-raised md-primary" ng-disabled="!blueprint._id  || !blueprint.userAccess.instance.write" ui-sref="instance({ blueprintId: blueprint._id })">
+                Create Instance
+              </md-button>
+
+              <md-button id="deleteBlueprint" class="md-raised md-error" ng-disabled="!blueprint._id  || !blueprint.userAccess.blueprint.delete" ng-click="deleteBlueprint($event)">
+                Delete Blueprint
+              </md-button>
+
+            </form>
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+
+      <md-tab> <!-- Access Rights -->
+        <md-tab-label>
+          <md-tooltip md-direction="bottom">Access Rights</md-tooltip>
+          <i class="fa fa-key" aria-hidden="true"></i>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="access-rights" layout="column">
+            <p class="category md-primary-bg">Access Rights</p>
+
+            <access-rights access="blueprint.access" default-rights="defaultRights" author="blueprint.author"></access-rights>
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+
+      <md-tab> <!-- Layers -->
+        <md-tab-label>
+          <md-tooltip md-direction="bottom">Layers</md-tooltip>
+          <i class="fa fa-cubes" aria-hidden="true"></i>
+        </md-tab-label>
+        <md-tab-body>
+          <div layout="row" class="search">
+            <md-input-container md-no-float class="md-block flex">
+              <input ng-disabled='AllInstances.layer.All.elements.length === 0' ng-model="search.layers" placeholder="Search layers ...">
+            </md-input-container>
+            <md-input-container>
+              <label>by</label>
+              <md-select ng-disabled='AllInstances.layer.All.elements.length === 0' ng-model="search.layersSelect" aria-label='search layers on ...'>
+                <md-option selected value='$'>
+                  All
+                </md-option>
+                <md-option value='name'>
+                  Name
+                </md-option>
+                <md-option value='description'>
+                  Description
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <md-list><!-- need to display all the layers this way and to access them -->
+            <md-list-item class="md-3-line" ng-repeat="layer in AllInstances.toArray('layer') | filter:searchFilter(search.layersSelect, search.layers)">
+              <div class="md-list-item-text">
+                <h3>
+                  {{layer.name}}
+
+                  <span class='right'>
+                    <md-button ng-disabled='layer.elements.length === 0' ng-click='layerInstance.create($event, layer.elements)'>
+                      <md-tooltip md-direction="bottom">Duplicate Layer</md-tooltip>
+                      <i class="fa fa-clone" aria-hidden="true"></i>
+                    </md-button>
+
+                    <md-button ng-if="layer._id.length  > 8" ng-click='layer.delete()'>
+                      <md-tooltip md-direction="bottom">Delete Layer</md-tooltip>
+                      <i class='fa fa-trash-o' aria-hidden="true"></i>
+                    </md-button>
+                  </span>
+                </h3>
+                <p>{{layer.description}}</p>
+
+                <div class='actions' layout="row" layout-align="left center">
+                  <md-button ng-click="openLayer(layer)">
+                    <md-tooltip md-direction="bottom">Elements</md-tooltip>
+                    <i class="fa fa-cube" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-if="layer.name !== 'Selected'" ng-disabled='layer.elements.length === 0' ng-click="layer.toggle('Selection')">
+                    <md-tooltip md-direction="bottom">Select</md-tooltip>
+                    <i class='fa' ng-class="{ 'fa-square-o': !layer.areAll('Selection'), 'fa-check-square-o': layer.areAll('Selection') }" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-disabled='layer.elements.length === 0' ng-click="layer.toggle('Reduction')">
+                    <md-tooltip md-direction="bottom">Reduce</md-tooltip>
+                    <i class='fa' ng-class="{ 'fa-compress': !layer.areAll('Reduction'), 'fa-expand': layer.areAll('Reduction') }" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-disabled='layer.elements.length === 0' ng-click="layer.toggle('Visibility')">
+                    <md-tooltip md-direction="bottom">Visible</md-tooltip>
+                    <i class='fa' ng-class="{ 'fa-eye': !layer.areAll('Visibility'), 'fa-eye-slash': layer.areAll('Visibility') }" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-disabled='layer.elements.length === 0' ng-click="layer.duplicateElements()">
+                    <md-tooltip md-direction="bottom">Duplicate</md-tooltip>
+                    <i class="fa fa-clone" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-disabled='layer.elements.length === 0' ng-click="layer.deleteElements()">
+                    <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                    <i class='fa fa-trash-o' aria-hidden="true"></i>
+                  </md-button>
+
+                  <span class='right'>{{layer.elements.length}}</span>
+                </div>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-tab-body>
+      </md-tab>
+
+
+      <md-tab> <!-- Current Layer -->
+        <md-tab-label>
+          <md-tooltip md-direction="bottom">Layer</md-tooltip>
+          <i class="fa fa-cube" aria-hidden="true"></i>
+        </md-tab-label>
+        <md-tab-body>
+
+          <p class="category md-primary-bg">Informations</p>
+
+          <md-content layout-padding>
+            <md-input-container class="md-block">
+              <label>Name</label>
+              <input type='string' ng-disabled="current.layer._id.length  <= 8" ng-model='current.layer.name'>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Description</label>
+              <textarea rows="1" ng-disabled="current.layer._id.length  <= 8" ng-model='current.layer.description'></textarea>
+            </md-input-container>
+          </md-content>
+
+          <div class="category md-primary-bg">
+            Elements ({{current.layer.elements.length}})
+            <div class='actions right' layout="row" layout-align="left center">
+
+              <md-button ng-if="layer.name !== 'Selected'" ng-disabled='current.layer.elements.length === 0' ng-click="current.layer.toggle('Selection')">
+                <md-tooltip md-direction="bottom">Select</md-tooltip>
+                <i class='fa' ng-class="{ 'fa-square-o': !current.layer.areAll('Selection'), 'fa-check-square-o': current.layer.areAll('Selection') }" aria-hidden="true"></i>
+              </md-button>
+
+              <md-button ng-disabled='current.layer.elements.length === 0' ng-click="current.layer.toggle('Reduction')">
+                <md-tooltip md-direction="bottom">Reduce</md-tooltip>
+                <i class='fa' ng-class="{ 'fa-compress': !current.layer.areAll('Reduction'), 'fa-expand': current.layer.areAll('Reduction') }" aria-hidden="true"></i>
+              </md-button>
+
+              <md-button ng-disabled='current.layer.elements.length === 0' ng-click="current.layer.toggle('Visibility')">
+                <md-tooltip md-direction="bottom">Visible</md-tooltip>
+                <i class='fa' ng-class="{ 'fa-eye': !current.layer.areAll('Visibility'), 'fa-eye-slash': current.layer.areAll('Visibility') }" aria-hidden="true"></i>
+              </md-button>
+
+              <md-button ng-disabled='current.layer.elements.length === 0' ng-click="current.layer.duplicateElements()">
+                <md-tooltip md-direction="bottom">Duplicate</md-tooltip>
+                <i class="fa fa-clone" aria-hidden="true"></i>
+              </md-button>
+
+              <md-button ng-disabled='current.layer.elements.length === 0' ng-click="current.layer.deleteElements()">
+                <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                <i class='fa fa-trash-o' aria-hidden="true"></i>
+              </md-button>
+            </div>
+          </div>
+
+          <div layout="row" class="search">
+            <md-input-container md-no-float class="md-block flex">
+              <input ng-disabled='current.layer.elements.length === 0' ng-model="search.text.layer" placeholder="Search elements ...">
+            </md-input-container>
+            <md-input-container>
+              <label>by</label>
+              <md-select ng-disabled='current.layer.elements.length === 0' ng-model="search.select.layer" aria-label='search elements on ...'>
+                <md-option selected value='$'>
+                  All
+                </md-option>
+                <md-option value='name'>
+                  Name
+                </md-option>
+                <md-option value='description'>
+                  Description
+                </md-option>
+                <md-option value='type'>
+                  Type
+                </md-option>
+                <md-option value='id'>
+                  Id
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+
+          <md-list>
+            <md-list-item class="md-3-line" ng-repeat='element in current.layer.getElements() | filter:searchFilter(search.select.layer, search.text.layer)'>
+              <div class="md-list-item-text">
+                <h3>
+                  <span class='badge md-primary-bg'>{{element.id}}</span>
+                   {{element.name}}
+                  <span class='badge md-default right {{element.type}}'>{{elementsDefinition[element.type].name}}</span>
+                </h3>
+                <p>{{element.description}}</p>
+
+                <div class='actions' layout="row" layout-align="left center">
+                  <md-button ng-click="openProperties(element)">
+                    <md-tooltip md-direction="bottom">Edit</md-tooltip>
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-click='openDocumentation(element)'>
+                    <md-tooltip md-direction="bottom">Documentation</md-tooltip>
+                    <i class='fa fa-book' aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-if="current.layer.name !== 'Selected'" ng-click="element.toggleSelection()">
+                    <md-tooltip md-direction="bottom">Select</md-tooltip>
+                    <i class='fa' ng-class="{ 'fa-square-o': !element.getSelection(), 'fa-check-square-o': element.getSelection() }" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-click="element.toggleReduction()">
+                    <md-tooltip md-direction="bottom">Reduce</md-tooltip>
+                    <i class='fa' ng-class="{ 'fa-compress': !element.getReduction(), 'fa-expand': element.getReduction() }" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-click='element.toggleVisibility()'>
+                    <md-tooltip md-direction="bottom">Visible</md-tooltip>
+                    <i class='fa' ng-class="{ 'fa-eye': element.getVisibility(), 'fa-eye-slash': !element.getVisibility() }" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-click='element.duplicate()'>
+                    <md-tooltip md-direction="bottom">Duplicate</md-tooltip>
+                    <i class="fa fa-clone" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-if="current.layer._id.length > 8" class='right' ng-click='current.layer.removeElement($index)'>
+                    <md-tooltip md-direction="bottom">Remove from Layer</md-tooltip>
+                    <i class="fa fa-chain-broken" aria-hidden="true"></i>
+                  </md-button>
+
+                  <md-button ng-click='element.delete()'>
+                    <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                    <i class='fa fa-trash-o' aria-hidden="true"></i>
+                  </md-button>
+                </div>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-tab-body>
+      </md-tab>
+
+
+      <md-tab ng-disabled="!isCurrentElementDefined()"> <!-- Element -->
+        <md-tab-label>
+          <md-tooltip md-direction="bottom">Element</md-tooltip>
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </md-tab-label>
+        <md-tab-body>
+          <div class="category md-primary-bg">
+            <!-- <span class='badge md-default-bg md-primary'>{{current.element.id}}</span> -->
+            {{current.element.name}}
+            <span class='badge right'>{{current.element.getDefinition().name}}</span>
+          </div>
+          <form name='propertiesForm' layout-padding autocomplete="off">
+            <div class="sub-category md-red-purple-bg">
+              Informations
+              <div class='actions right' layout="row" layout-align="left center">
+                <md-button ng-click="current.element.toggleSelection()">
+                  <md-tooltip md-direction="bottom">{{(current.element.getSelection()) ? 'Deselect' : 'Select'}}</md-tooltip>
+                  <i class='fa' ng-class="{ 'fa-square-o': !current.element.getSelection(), 'fa-check-square-o': current.element.getSelection() }" aria-hidden="true"></i>
+                </md-button>
+
+                <md-button ng-click="current.element.toggleReduction()">
+                  <md-tooltip md-direction="bottom">{{(element.getReduction()) ? 'Extend' : 'Reduce' }}</md-tooltip>
+                  <i class='fa' ng-class="{ 'fa-compress': !current.element.getReduction(), 'fa-expand': current.element.getReduction() }" aria-hidden="true"></i>
+                </md-button>
+
+                <md-button ng-click='current.element.toggleVisibility()'>
+                  <md-tooltip md-direction="bottom">{{(current.element.getVisibility()) ? 'Hide' : 'Show' }}</md-tooltip>
+                  <i class='fa' ng-class="{ 'fa-eye': current.element.getVisibility(), 'fa-eye-slash': !current.element.getVisibility() }" aria-hidden="true"></i>
+                </md-button>
+
+                <md-button ng-click='current.element.duplicate()'>
+                  <md-tooltip md-direction="bottom">Duplicate</md-tooltip>
+                  <i class="fa fa-clone" aria-hidden="true"></i>
+                </md-button>
+
+                <md-button ng-click='current.element.delete()'>
+                  <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                  <i class='fa fa-trash-o' aria-hidden="true"></i>
+                </md-button>
+              </div>
+            </div>
+
+            <md-content>
+              <md-input-container class="md-block">
+                <label>Name</label>
+                <input type='string' ng-model='current.element.name'>
+              </md-input-container>
+
+              <md-input-container class="md-block">
+                <label>Description</label>
+                <textarea rows="1" ng-model='current.element.description'></textarea>
+              </md-input-container>
+            </md-content>
+
+          </form>
+        </md-tab-body>
+      </md-tab>
+
+      <md-tab ng-disabled="!isCurrentElementDefined()"> <!-- Documentation -->
+        <md-tab-label>
+          <md-tooltip md-direction="bottom">Documentation</md-tooltip>
+          <i class="fa fa-book" aria-hidden="true"></i>
+        </md-tab-label>
+        <md-tab-body>
+          <p class="category md-primary-bg center">{{current.definition.name}}</p>
+          <p id='documentation-description' layout-padding>{{current.definition.description}}</p>
+
+          <div ng-repeat="type in [ 'in', 'out' ]">
+            <p class="sub-category md-red-purple-bg capitalize">Properties {{type}}</p>
+
+            <div layout="row" class="search">
+              <md-input-container md-no-float class="md-block flex">
+                <input ng-disabled='current.element.getDefinition().properties[type].length === 0' ng-model="search.text.documentation[type]" placeholder="Search properties ..." />
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>by</label>
+                <md-select ng-disabled='current.element.getDefinition().properties[type].length === 0' ng-model="search.select.documentation[type]" aria-label='search elements on ...'>
+                  <md-option selected value='$'>
+                    All
+                  </md-option>
+                  <md-option value='name'>
+                    Name
+                  </md-option>
+                  <md-option value='description'>
+                    Description
+                  </md-option>
+                  <md-option value='type'>
+                    Type
+                  </md-option>
+                  <md-option value='required'>
+                    Required
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+
+            <md-list>
+              <md-list-item class="md-3-line" ng-repeat='property in current.element.getDefinition().properties[type] | filter:searchFilter(search.select.documentation[type], search.text.documentation[type])'>
+                <div class="md-list-item-text">
+                  <h3 ng-class="{ 'required': property.required }">{{property.name}}</h3>
+                  <p>{{(property.type.indexOf('All') > -1) ? 'All' : property.type.join(' | ')}}</p>
+                  <p>{{property.helper}}</p>
+                  <p>{{property.description}}</p>
+                </div>
+              </md-list-item>
+            </md-list>
+
+          </div>
+
+        </md-tab-body>
+      </md-tab>
+
+
+    </md-tabs>
+  </md-sidenav>
+
+</div>

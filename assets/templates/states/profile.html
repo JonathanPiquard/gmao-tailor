@@ -1,0 +1,109 @@
+
+<div id="profile"> <!-- PROFILE -->
+
+  <md-content>
+
+    <md-toolbar class="md-error" layout="row">
+      <div class="md-toolbar-tools">
+        <span>User Informations</span>
+      </div>
+    </md-toolbar>
+
+    <md-progress-linear md-mode="determinate" value="{{avatarProgress}}"></md-progress-linear>
+
+
+    <form name="profileForm" class="padding-content" autocomplete="off">
+
+      <avatar></avatar>
+
+      <md-button class="reset" ng-click="clearProfile()">
+        <md-tooltip md-direction="left">Reset</md-tooltip>
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </md-button>
+
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input type='string' name="name" ng-model='profile.name' ng-maxlength="25">
+        <div ng-messages="profileForm.name.$error" ng-show="profileForm.name.$invalid && profileForm.name.$touched">
+          <div ng-message="maxlength" ng-show="profileForm.name.$error.maxlength">
+            This is too long : maximum 25.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input type='email' name="email" ng-model='profile.email' ng-minlength="5" ng-maxlength="50">
+        <div ng-messages="profileForm.email.$error" ng-show="profileForm.email.$invalid && profileForm.email.$touched">
+          <div ng-message="email" ng-show="profileForm.email.$error.email">
+            It should be a email.
+          </div>
+          <div ng-message="minlength" ng-show="profileForm.email.$error.minlength">
+            This is too short : minimum 5.
+          </div>
+          <div ng-message="maxlength" ng-show="profileForm.email.$error.maxlength">
+            This is too long : maximum 50.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Old Password</label>
+        <input type='oldPassword' name="oldPassword" ng-model='profile.oldPassword' ng-required="profile.password || avatarSrc !== defaultSrc || profile.name !== currentUser.name || profile.email !== currentUser.email" ng-minlength="8" ng-maxlength="256">
+        <div ng-messages="profileForm.oldPassword.$error" ng-show="profileForm.oldPassword.$error.required || (profileForm.oldPassword.$invalid && profileForm.oldPassword.$touched)">
+          <div ng-message="required" ng-show="profileForm.oldPassword.$error.required">
+            This is required.
+          </div>
+          <div ng-message="minlength" ng-show="profileForm.oldPassword.$error.minlength">
+            This is too short : minimum 8.
+          </div>
+          <div ng-message="maxlength" ng-show="profileForm.oldPassword.$error.maxlength">
+            This is too long : maximum 256.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input type='password' name="password" ng-model='profile.password' ng-required="passwordAgain" ng-minlength="8" ng-maxlength="256">
+        <div ng-messages="profileForm.password.$error" ng-show="profileForm.password.$error.required || (profileForm.password.$invalid && profileForm.password.$touched)">
+          <div ng-message="required" ng-show="profileForm.password.$error.required">
+            This is required.
+          </div>
+          <div ng-message="minlength" ng-show="profileForm.password.$error.minlength">
+            This is too short : minimum 8.
+          </div>
+          <div ng-message="maxlength" ng-show="profileForm.password.$error.maxlength">
+            This is too long : maximum 256.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block" md-is-error="profileForm.passwordAgain.$error.required || ((profileForm.passwordAgain.$invalid || passwordAgain !== profile.password) && profileForm.passwordAgain.$touched)">
+        <label>Password Again</label>
+        <input type='password' name="passwordAgain" ng-model='passwordAgain' ng-required="profile.password" ng-minlength="8" ng-maxlength="256">
+        <div ng-messages="profileForm.passwordAgain.$error" ng-show="profileForm.passwordAgain.$error.required || ((profileForm.passwordAgain.$invalid || passwordAgain !== profile.password) && profileForm.passwordAgain.$touched)">
+          <div ng-message="required" ng-show="profileForm.passwordAgain.$error.required">
+            This is required.
+          </div>
+          <div class="md-input-message-animation" ng-show="passwordAgain !== profile.password">
+            This should match the password.
+          </div>
+          <div ng-message="minlength" ng-show="profileForm.passwordAgain.$error.minlength">
+            This is too short : minimum 8.
+          </div>
+          <div ng-message="maxlength" ng-show="profileForm.passwordAgain.$error.maxlength">
+            This is too long : maximum 256.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-button class="md-raised md-success" type="submit" ng-disabled="profileForm.$invalid || (passwordAgain !== profile.password && profile.password.length > 0) || (profile.name === currentUser.name && profile.email === currentUser.email && avatarSrc === defaultSrc)" ng-click="submitProfile()">
+        Update !
+      </md-button>
+
+    </form>
+
+  </md-content>
+
+</div>

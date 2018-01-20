@@ -1,0 +1,22 @@
+<nav id="appHeader"> <!-- HEADER-->
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+
+          <md-button id="sidenavToggleLeft" class="sidenavToggle" ng-if="!isState('auth') || currentUser" ng-click="toggleSidenav('left')" aria-label="Toggle the left sidenav">
+            <i class="fa" ng-class="{ 'fa-chevron-down': sidenavLeft.open, 'fa-chevron-right': !sidenavLeft.open }" aria-hidden="true"></i>
+          </md-button>
+
+          <a href="/home" class="md-raised" layout='row'>
+            <img src="/images/logo.png" />
+            <h1 class="md-raised">GMAO Tailor</h1>
+          </a>
+
+          <span flex></span><!-- fill up the space between left and right area -->
+
+          <md-button id="sidenavToggleRight" class="sidenavToggle" ng-if="isState('blueprint')" ng-click="toggleSidenav('right')" aria-label="Toggle the right sidenav">
+            <i class="fa" ng-class="{ 'fa-chevron-down': sidenavRight.open, 'fa-chevron-left': !sidenavRight.open }" aria-hidden="true"></i>
+          </md-button>
+
+      </div>
+  </md-toolbar>
+</nav> <!-- END HEADER -->

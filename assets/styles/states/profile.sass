@@ -1,0 +1,61 @@
+
+
+//=============================================================================//
+//=============================================================================//
+//                                  Profile                                    //
+//=============================================================================//
+//=============================================================================//
+
+
+#profile, #group, #element
+  background: url("/images/background8.jpg")
+  background-size: cover
+  background-position: center
+  /*display: flex //to center verticaly */
+  overflow-y: auto
+
+  > md-content
+    overflow: hidden
+    margin: auto
+    padding: 80px 0
+    max-width: 500px
+
+    > form
+      position: relative
+
+    > md-tabs, > form
+      background-color: #fff
+
+
+#profile
+
+  .md-button.reset
+    left: 0
+
+
+@media only screen and (max-width: 450px)
+  #profile, #group, #element
+
+    > md-content
+      margin: 0
+      padding: 0
+      min-width: 100%
+
+@media only screen and (min-width: 451px)
+  #profile, #group, #element
+
+    > md-content
+      min-width: 400px
+
+    md-tabs.md-dynamic-height md-tabs-content-wrapper
+      overflow: hidden
+
+      md-tab-content
+        overflow-x: hidden
+        overflow-y: auto
+
+@media only screen and (min-width: 620px)
+  #profile, #group, #element
+
+    > md-content
+      min-width: 500px

@@ -1,0 +1,16 @@
+
+<md-menu id="context-menu">
+  <md-button id="context-menu-trigger" ng-click="$mdOpenMenu($event)"></md-button>
+  <md-menu-content id="context-menu-content">
+    <md-menu-item ng-repeat="list in lists">
+      <md-menu>
+        <md-button ng-click="$mdOpenMenu()">{{list.name}}</md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="element in list.elements">
+            <md-button ng-click="createElement(element.definition._id, element.version)">{{element.definition.name}}</md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>

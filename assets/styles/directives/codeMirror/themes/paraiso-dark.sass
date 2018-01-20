@@ -1,0 +1,115 @@
+
+
+//=============================================================================//
+//=============================================================================//
+//                    ICEcoder default theme by Jan T. Sott                    //
+//               (https://github.com/idleberg/Paraiso-CodeMirror)              //
+//        Inspired by the art of Rubens LP (http://www.rubenslp.com.br)        //
+//=============================================================================//
+//=============================================================================//
+
+
+.cm-s-paraiso-dark.CodeMirror
+  background: #2f1e2e
+  color: #b9b6b0
+
+.cm-s-paraiso-dark
+
+  div.CodeMirror-selected
+    background: #41323f
+
+  .CodeMirror-activeline-background
+    background: #4D344A
+
+  .CodeMirror-matchingbracket
+    text-decoration: underline
+    color: white !important
+
+  .CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection,
+  .CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection
+    background: rgba(65, 50, 63, .99)
+
+  .CodeMirror-gutters
+    background: #2f1e2e
+    border-right: 0px
+
+  .CodeMirror-guttermarker
+    color: #ef6155
+
+  .CodeMirror-guttermarker-subtle
+    color: #776e71
+
+  .CodeMirror-linenumber
+    color: #776e71
+
+  .CodeMirror-cursor
+    border-left: 1px solid #8d8687
+
+  span.cm-comment
+    color: #84758A /* original : #e96ba8 */
+
+  span.cm-atom
+    color: #815ba4
+
+  span.cm-number
+    color: #815ba4
+
+
+  span.cm-property, span.cm-attribute
+    color: #48b685
+
+  span.cm-keyword
+    color: #ef6155
+
+  span.cm-string
+    color: #fec418
+
+
+  span.cm-variable
+    color: #48b685
+
+  span.cm-variable-2
+    color: #06b6ef
+
+  span.cm-def
+    color: #f99b15
+
+  span.cm-bracket
+    color: #b9b6b0
+
+  span.cm-tag
+    color: #ef6155
+
+  span.cm-link
+    color: #815ba4
+
+  span.cm-error
+    background: #ef6155
+    color: #8d8687
+
+
+  /* Scroll */
+  .CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical
+    /* no background : transparent */
+
+    div
+      background: #3A2639
+      border: 1px solid #3E293D
+
+  .CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical
+    background: #261b26
+
+    div
+      background: #3A2639
+      border: 1px solid #3E293D
+
+  .CodeMirror-simplescroll-horizontal div
+    top: 1px
+
+  .CodeMirror-simplescroll-vertical div
+    left: 1px
+
+.CodeMirror.cm-s-icecoder.CodeMirror-simplescroll
+
+  .CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler
+    background-color: #261b26

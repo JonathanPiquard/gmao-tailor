@@ -1,0 +1,138 @@
+
+<div id="auth"> <!-- AUTH -->
+
+  <md-content>
+
+    <form name="registerForm" autocomplete="off">
+
+      <md-toolbar layout="row" class="md-error">
+        <div class="md-toolbar-tools">
+          <span>Register</span>
+        </div>
+      </md-toolbar>
+
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input type='string' name="name" ng-model='register.name' required ng-maxlength="25">
+        <div ng-messages="registerForm.name.$error" ng-show="registerForm.name.$invalid && registerForm.name.$touched">
+          <div ng-message="required" ng-show="registerForm.name.$error.required">
+            This is required.
+          </div>
+          <div ng-message="maxlength" ng-show="registerForm.name.$error.maxlength">
+            This is too long : maximum 25.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input type='email' name="email" ng-model='register.email' required ng-minlength="5" ng-maxlength="50">
+        <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$invalid && registerForm.email.$touched">
+          <div ng-message="required" ng-show="registerForm.email.$error.required">
+            This is required.
+          </div>
+          <div ng-message="email" ng-show="registerForm.email.$error.email">
+            It should be a email.
+          </div>
+          <div ng-message="minlength" ng-show="registerForm.email.$error.minlength">
+            This is too short : minimum 5.
+          </div>
+          <div ng-message="maxlength" ng-show="registerForm.email.$error.maxlength">
+            This is too long : maximum 50.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input type='password' name="password" ng-model='register.password' required ng-minlength="8" ng-maxlength="256">
+        <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$invalid && registerForm.password.$touched">
+          <div ng-message="required" ng-show="registerForm.password.$error.required">
+            This is required.
+          </div>
+          <div ng-message="minlength" ng-show="registerForm.password.$error.minlength">
+            This is too short : minimum 8.
+          </div>
+          <div ng-message="maxlength" ng-show="registerForm.password.$error.maxlength">
+            This is too long : maximum 256.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block" md-is-error="registerForm.passwordAgain.$dirty && (passwordAgain.$invalid || passwordAgain !== register.password)">
+        <label>Password Again</label>
+        <input type='password' name="passwordAgain" ng-model='passwordAgain' required ng-minlength="8" ng-maxlength="256">
+        <div ng-messages="registerForm.passwordAgain.$error" ng-show="(registerForm.passwordAgain.$invalid || passwordAgain !== register.password) && registerForm.passwordAgain.$touched">
+          <div ng-message="required" ng-show="registerForm.passwordAgain.$error.required">
+            This is required.
+          </div>
+          <div class="md-input-message-animation" ng-show="passwordAgain !== register.password">
+            This should match the password.
+          </div>
+          <div ng-message="minlength" ng-show="registerForm.passwordAgain.$error.minlength">
+            This is too short : minimum 8.
+          </div>
+          <div ng-message="maxlength" ng-show="registerForm.passwordAgain.$error.maxlength">
+            This is too long : maximum 256.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-button class="md-raised md-success" type="submit" ng-disabled="registerForm.$invalid" ng-click="registerSubmit()">
+        Register !
+      </md-button>
+
+    </form>
+
+    <form name="loginForm">
+
+      <md-toolbar layout="row" class="md-error">
+        <div class="md-toolbar-tools">
+          <span>Login</span>
+        </div>
+      </md-toolbar>
+
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input type='email' name="email" ng-model='login.email' required ng-minlength="5" ng-maxlength="50">
+        <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$invalid && loginForm.email.$touched">
+          <div ng-message="required" ng-show="loginForm.email.$error.required">
+            This is required.
+          </div>
+          <div ng-message="email" ng-show="loginForm.email.$error.email">
+            It should be an email.
+          </div>
+          <div ng-message="minlength" ng-show="loginForm.email.$error.minlength">
+            This is too long : maximum 5.
+          </div>
+          <div ng-message="maxlength" ng-show="loginForm.email.$error.maxlength">
+            This is too long : maximum 50.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input type='password' name="password" ng-model='login.password' required ng-minlength="8" ng-maxlength="256">
+        <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$invalid && loginForm.password.$touched">
+          <div ng-message="required" ng-show="loginForm.password.$error.required">
+            This is required.
+          </div>
+          <div ng-message="minlength" ng-show="loginForm.password.$error.minlength">
+            This is too short : minimum 8.
+          </div>
+          <div ng-message="maxlength" ng-show="loginForm.password.$error.maxlength">
+            This is too long : maximum 256.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-button class="md-raised md-success" type="submit" ng-disabled="loginForm.$invalid" ng-click="loginSubmit()">
+        Log In !
+      </md-button>
+
+    </form>
+
+  </md-content>
+
+</div>

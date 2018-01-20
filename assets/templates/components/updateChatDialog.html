@@ -1,0 +1,72 @@
+<md-dialog aria-label="Update Chat">
+  <form name='updateChatDialogForm' ng-submit="validate()">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h2>Update Chat</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column">
+
+      <md-input-container class="md-block" ng-show="chat.members.length + addMembers.members.length > 1">
+        <label>Name</label>
+        <input id="updateChatName" type='string' name="name" ng-model='addMembers.name' ng-maxlength="25">
+        <div ng-messages="updateChatDialogForm.name.$error" ng-show="updateChatDialogForm.name.$invalid && updateChatDialogForm.name.$touched">
+          <div ng-message="maxlength">
+            This is too long : maximum 25.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-list flex ng-show="chat.members.length > 0">
+        <div layout="row" class="search">
+          <md-input-container md-no-float class="md-block flex">
+            <input ng-disabled='chat.members.length === 0' ng-model="search.text.members" placeholder="Search ...">
+          </md-input-container>
+          <md-input-container>
+            <label>by</label>
+            <md-select ng-disabled='chat.members.length === 0' ng-model="search.select.members" aria-label='Search members of the chat ...'>
+              <md-option selected value='$'>
+                All
+              </md-option>
+              <md-option value='name'>
+                Name
+              </md-option>
+              <md-option value='status'>
+                Connected
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <md-list-item class="md-2-line" ng-repeat="member in chat.members | filter:searchFilter(search.select.members, search.text.members)">
+          <img ng-src="/avatars/users/{{member._id}}" class="md-avatar" />
+          <div class="md-list-item-text" layout="column">
+            <h3>
+              <span>{{member.name}}</span>
+              <span class="status" ng-class="{ 'connected': member.status, 'disconnected': !member.status }"></span>
+            </h3>
+            <p>{{lastMessage(member._id)}}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+
+      <md-chips class="md-contact-chips" ng-model="addMembers.members" md-require-match="true" md-autocomplete-snap>
+        <md-autocomplete md-menu-class="md-contact-chips-suggestions" md-selected-item="addMembers.selectedItem" md-search-text="addMembers.searchText"
+        md-items="user in Contacts.allUsers | filter:addMembers.filter" md-no-cache="true" md-min-length="0"
+        md-autoselect="true" placeholder="Add Users">
+          <div class="md-contact-suggestion">
+            <img ng-src="avatars/users/{{user._id}}" alt="{{user.name}}" />
+            <span class="md-contact-name">{{user.name}}</span>
+          </div>
+        </md-autocomplete>
+        <md-chip-template>
+          <div class="md-contact-avatar"><img ng-src="avatars/users/{{$chip._id}}" /></div>
+          <div class="md-contact-name">{{$chip.name}}</div>
+        </md-chip-template>
+      </md-chips>
+
+    <md-dialog-actions layout='row'>
+      <md-button type="submit" class="md-raised md-success" ng-click="validate()">Validate</md-button>
+      <md-button class='md-raised md-warn' ng-click="cancel()">Cancel</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -1,0 +1,462 @@
+
+<div id="element"> <!-- ELEMENT -->
+
+  <md-content>
+
+      <md-toolbar class="md-error" layout="row">
+        <div class="md-toolbar-tools">Element</div>
+      </md-toolbar>
+
+      <md-tabs flex md-selected="current.tab" md-no-pagination md-dynamic-height md-stretch-tab='always' md-center-tabs>
+
+
+        <md-tab> <!-- Informations -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Informations</md-tooltip>
+            <i class="fa fa-sliders" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <form name="elementForm" autocomplete="off">
+              <md-content class="padding-content" layout="column">
+
+                <md-input-container class="md-block">
+                  <label>Name</label>
+                  <input type='string' name="name" ng-model='element.name' ng-maxlength="25" required>
+                  <div ng-messages="elementForm.name.$error" ng-show="elementForm.name.$invalid && elementForm.name.$touched">
+                    <div ng-message="required" ng-show="elementForm.name.$error.required">
+                      This is required.
+                    </div>
+                    <div ng-message="maxlength" ng-show="elementForm.name.$error.maxlength">
+                      This is too long : maximum 25.
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Description</label>
+                  <textarea name="description" rows="1" ng-model='element.description' ng-maxlength="1000"></textarea>
+                  <div ng-messages="elementForm.description.$error" ng-show="elementForm.description.$invalid">
+                    <div ng-message="maxlength" ng-show="elementForm.description.$error.maxlength">The description is too long : maximum 1000.</div>
+                  </div>
+                </md-input-container>
+
+                <md-chips
+                  class="tags"
+                  name="tags"
+                  ng-model="element.tags"
+                  placeholder="Tags"
+                  delete-button-label="Remove Tag"
+                  delete-hint="Press delete to remove tag"
+                  secondary-placeholder="+Tag"
+                  md-enable-chip-edit="true"
+                  md-max-chips="30">
+                </md-chips>
+                <div ng-messages="elementForm.tags.$error" ng-show="elementForm.tags.$invalid && elementForm.tags.$touched">
+                  <div ng-message="md-max-chips">There are too many tags : maximum 30.</div>
+                </div>
+
+                <md-autocomplete
+                    required
+                    md-input-name="versionName"
+                    md-input-maxlength="25"
+                    md-search-text="current.versionName"
+                    md-items="version in element.versions"
+                    md-item-text="version.name"
+                    md-min-length="0"
+                    md-floating-label="Version">
+                  <md-item-template>
+                    <span md-highlight-text="version.name" md-highlight-flags="^i">{{version.name}}</span>
+                  </md-item-template>
+                  <div ng-messages="elementForm.version.$error" ng-show="elementForm.versionName.$invalid" class='md-input-message-animation'>
+                    <div ng-message="required" ng-show="elementForm.versionName.$error.required">
+                      The version must be specified.
+                    </div>
+                    <div ng-message="maxlength" ng-show="elementForm.versionName.$error.maxlength">
+                      The version is too long : maximum 25.
+                    </div>
+                  </div>
+                </md-autocomplete>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Version Note</label>
+                  <textarea name="versionNote" rows="1" ng-model='current.notes' ng-maxlength="1000"></textarea>
+                  <div ng-messages="elementForm.versionNote.$error" ng-show="elementForm.versionNote.$invalid">
+                    <div ng-message="maxlength" ng-show="elementForm.versionNote.$error.maxlength">It is too long : maximum 1000.</div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>TODO</label>
+                  <textarea name="todo" rows="1" ng-model='current.todo' ng-maxlength="1000"></textarea>
+                  <div ng-messages="elementForm.todo.$error" ng-show="elementForm.todo.$invalid">
+                    <div ng-message="maxlength" ng-show="elementForm.todo.$error.maxlength">It is too long : maximum 1000.</div>
+                  </div>
+                </md-input-container>
+
+                <md-button class="md-raised md-success" type="submit" ng-disabled="elementForm.$invalid || !element.userAccess.element.update" ng-click="saveElement()">
+                  Save on {{current.versionName}}
+                </md-button>
+
+                <md-button class="md-raised md-warn" ng-disabled="current.versionsName.indexOf(current.versionName) === -1 || !element._id" ng-click="loadElement(current.versionName)">
+                  Load {{current.versionName}}
+                </md-button>
+
+                <md-button class="md-raised md-error" ng-disabled="!element._id  || !element.userAccess.element.delete" ng-click="deleteElement($event)">
+                  Delete Element
+                </md-button>
+
+              </md-content>
+            </form>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- In Properties -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">In Properties</md-tooltip>
+            <i class="fa fa-indent" aria-hidden="true"></i>
+            <i class="fa fa-list" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+
+              <md-list flex>
+
+                <md-subheader class="md-no-sticky">In Properties ({{current.properties.in.length}})</md-subheader>
+                <div layout="row" class="search" ng-show="current.properties.in.length > 0">
+                  <md-input-container md-no-float class="md-block flex">
+                    <input ng-disabled='current.properties.in.length === 0' ng-model="search.text.properties.in" placeholder="Search ...">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>by</label>
+                    <md-select ng-disabled='current.properties.in.length === 0' ng-model="search.select.properties.in" aria-label='Search a property ...'>
+                      <md-option selected value='$'>
+                        All
+                      </md-option>
+                      <md-option value='name'>
+                        Name
+                      </md-option>
+                      <md-option value='description'>
+                        Description
+                      </md-option>
+                      <md-option value='helper'>
+                        Helper
+                      </md-option>
+                      <md-option value='type'>
+                        Type
+                      </md-option>
+                      <md-option value='required'>
+                        Required
+                      </md-option>
+                      <md-option value='multiple'>
+                        Multiple
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+
+                <md-list-item class="md-3-line" ng-repeat="property in current.properties.in | filter:searchFilter(search.select.properties.in, search.text.properties.in)">
+                  <div class="md-list-item-text" layout="column">
+                    <h3>
+                      <span ng-class="{ 'required': property.required }">{{property.name}}</span>
+                      <span class='badge md-red-purple-bg'>{{property.type.join(' | ')}}</span>
+                    </h3>
+                    <p>{{property.description}}</p>
+                    <p>{{property.helper}}</p>
+                    <div class="actions right">
+                      <md-button ng-click="loadProperty('in', property)">
+                        <md-tooltip md-direction="left">Update In property</md-tooltip>
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-click="removeProperty('in', property, $index)">
+                        <md-tooltip md-direction="left">Remove In property</md-tooltip>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-list-item>
+              </md-list>
+
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- In Property -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">In Property</md-tooltip>
+            <i class="fa fa-indent" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <form name="inPropertyForm" autocomplete="off">
+              <md-content class="padding-content" layout="column">
+
+                <md-button class="reset" ng-click="clearProperty('in')">
+                  <md-tooltip md-direction="left">Reset</md-tooltip>
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                </md-button>
+
+                <md-input-container class="md-block">
+                  <label>Name</label>
+                  <input type='string' name="name" ng-model='current.property.in.name' ng-maxlength="25" required>
+                  <div ng-messages="inPropertyForm.name.$error" ng-show="inPropertyForm.name.$invalid && inPropertyForm.name.$touched">
+                    <div ng-message="required" ng-show="inPropertyForm.name.$error.required">
+                      This is required.
+                    </div>
+                    <div ng-message="maxlength" ng-show="inPropertyForm.name.$error.maxlength">
+                      This is too long : maximum 25.
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Description</label>
+                  <textarea name="description" rows="1" ng-model='current.property.in.description' ng-maxlength="1000"></textarea>
+                  <div ng-messages="inPropertyForm.description.$error" ng-show="inPropertyForm.description.$invalid">
+                    <div ng-message="maxlength" ng-show="inPropertyForm.description.$error.maxlength">The description is too long : maximum 1000.</div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Helper</label>
+                  <textarea name="helper" rows="1" ng-model='current.property.in.helper' ng-maxlength="500"></textarea>
+                  <div ng-messages="inPropertyForm.helper.$error" ng-show="inPropertyForm.helper.$invalid">
+                    <div ng-message="maxlength" ng-show="inPropertyForm.helper.$error.maxlength">The helper is too long : maximum 500.</div>
+                  </div>
+                </md-input-container>
+
+                <md-chips flex ng-model="current.property.in.type" md-autocomplete-snap>
+                  <md-autocomplete md-selected-item="current.selected.in" md-search-text="current.text.in"
+                  md-items="type in types | filter:current.text.in" md-no-cache="true" md-min-length="0"
+                  md-autoselect="true" placeholder="Type">
+                    <div>{{type}}</div>
+                  </md-autocomplete>
+                  <md-chip-template>{{$chip}}</md-chip-template>
+                </md-chips>
+
+                <md-switch ng-model="current.property.in.required" aria-label="Is this property required ?">
+                  Required
+                </md-switch>
+
+                <md-switch ng-model="current.property.in.multiple" aria-label="Is this property can be connected to several others properties ?">
+                  Multiple
+                </md-switch>
+
+                <div class="sub-category md-primary-bg" layout="row">
+                  <md-switch ng-model="current.property.in.hasValidate" aria-label="A custum function to validate a connection to this property">
+                    Custom Validator
+                  </md-switch>
+
+                  <md-select ng-model="editorOptions.theme" aria-label='Select the theme of the editor'>
+                    <md-option value='default'>
+                      Default
+                    </md-option>
+                    <md-option value='icecoder'>
+                      ICEcoder
+                    </md-option>
+                    <md-option value='monokai'>
+                      Monokai
+                    </md-option>
+                    <md-option value='paraiso-dark'>
+                      Paraiso Dark
+                    </md-option>
+                  </md-select>
+                </div>
+
+                <div class="code-mirror-container" ng-show="current.property.in.hasValidate">
+                  <textarea code-mirror options="editorOptions" val="current.property.in.validator"></textarea>
+                </div>
+
+                <md-button class="md-raised md-success" type="submit" ng-disabled="inPropertyForm.$invalid" ng-click="submitProperty('in')">
+                  {{(current.property.in._id) ? 'Update' : 'Add'}} In Property
+                </md-button>
+
+              </md-content>
+            </form>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- Out Properties -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Out Properties</md-tooltip>
+            <i class="fa fa-list fa-flip-horizontal" aria-hidden="true"></i>
+            <i class="fa fa-outdent fa-flip-horizontal" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+
+              <md-list flex>
+
+                <md-subheader class="md-no-sticky">Out Properties ({{current.properties.out.length}})</md-subheader>
+                <div layout="row" class="search" ng-show="current.properties.out.length > 0">
+                  <md-input-container md-no-float class="md-block flex">
+                    <input ng-disabled='current.properties.out.length === 0' ng-model="search.text.properties.out" placeholder="Search ...">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>by</label>
+                    <md-select ng-disabled='current.properties.out.length === 0' ng-model="search.select.properties.out" aria-label='Search a property ...'>
+                      <md-option selected value='$'>
+                        All
+                      </md-option>
+                      <md-option value='name'>
+                        Name
+                      </md-option>
+                      <md-option value='description'>
+                        Description
+                      </md-option>
+                      <md-option value='helper'>
+                        Helper
+                      </md-option>
+                      <md-option value='type'>
+                        Type
+                      </md-option>
+                      <md-option value='required'>
+                        Required
+                      </md-option>
+                      <md-option value='multiple'>
+                        Multiple
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+
+                <md-list-item class="md-3-line" ng-repeat="property in current.properties.out | filter:searchFilter(search.select.properties.out, search.text.properties.out)">
+                  <div class="md-list-item-text" layout="column">
+                    <h3>
+                      <span ng-class="{ 'required': property.required }">{{property.name}}</span>
+                      <span class='badge md-red-purple-bg'>{{property.type.join(' | ')}}</span>
+                    </h3>
+                    <p>{{property.description}}</p>
+                    <p>{{property.helper}}</p>
+                    <div class="actions right">
+                      <md-button ng-click="loadProperty('out', property)">
+                        <md-tooltip md-direction="left">Update Out property</md-tooltip>
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-click="removeProperty('out', property, $index)">
+                        <md-tooltip md-direction="left">Remove Out property</md-tooltip>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-list-item>
+              </md-list>
+
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- Out Property -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Out Property</md-tooltip>
+            <i class="fa fa-outdent fa-flip-horizontal" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <form name="outPropertyForm" autocomplete="off">
+              <md-content class="padding-content" layout="column">
+
+                <md-button class="reset" ng-click="clearProperty('out')">
+                  <md-tooltip md-direction="left">Reset</md-tooltip>
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                </md-button>
+
+                <md-input-container class="md-block">
+                  <label>Name</label>
+                  <input type='string' name="name" ng-model='current.property.out.name' ng-maxlength="25" required>
+                  <div ng-messages="outPropertyForm.name.$error" ng-show="outPropertyForm.name.$invalid && outPropertyForm.name.$touched">
+                    <div ng-message="required" ng-show="outPropertyForm.name.$error.required">
+                      This is required.
+                    </div>
+                    <div ng-message="maxlength" ng-show="outPropertyForm.name.$error.maxlength">
+                      This is too long : maximum 25.
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Description</label>
+                  <textarea name="description" rows="1" ng-model='current.property.out.description' ng-maxlength="1000"></textarea>
+                  <div ng-messages="outPropertyForm.description.$error" ng-show="outPropertyForm.description.$invalid">
+                    <div ng-message="maxlength" ng-show="outPropertyForm.description.$error.maxlength">The description is too long : maximum 1000.</div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container layout="column" class="md-block">
+                  <label>Helper</label>
+                  <textarea name="helper" rows="1" ng-model='current.property.out.helper' ng-maxlength="500"></textarea>
+                  <div ng-messages="outPropertyForm.helper.$error" ng-show="outPropertyForm.helper.$invalid">
+                    <div ng-message="maxlength" ng-show="outPropertyForm.helper.$error.maxlength">The helper is too long : maximum 500.</div>
+                  </div>
+                </md-input-container>
+
+                <md-chips flex ng-model="current.property.out.type" md-autocomplete-snap>
+                  <md-autocomplete md-selected-item="current.selected.out" md-search-text="current.text.out"
+                  md-items="type in types | filter:current.text.out" md-no-cache="true" md-min-length="0"
+                  md-autoselect="true" placeholder="Type">
+                    <div>{{type}}</div>
+                  </md-autocomplete>
+                  <md-chip-template>{{$chip}}</md-chip-template>
+                </md-chips>
+
+                <md-switch ng-model="current.property.out.required" aria-label="Is this property required ?">
+                  Required
+                </md-switch>
+
+                <div class="sub-category md-primary-bg" layout="row">
+                  <md-switch ng-model="current.property.out.hasGetValue" aria-label="A custum function to return the value of this property">
+                    Custom Getter (Value)
+                  </md-switch>
+
+                  <md-select ng-model="editorOptions.theme" aria-label='Select the theme of the editor'>
+                    <md-option value='default'>
+                      Default
+                    </md-option>
+                    <md-option value='icecoder'>
+                      ICEcoder
+                    </md-option>
+                    <md-option value='monokai'>
+                      Monokai
+                    </md-option>
+                    <md-option value='paraiso-dark'>
+                      Paraiso Dark
+                    </md-option>
+                  </md-select>
+                </div>
+
+                <div class="code-mirror-container" ng-show="current.property.out.hasGetValue">
+                  <textarea code-mirror options="editorOptions" val="current.property.out.getter"></textarea>
+                </div>
+
+                <md-button class="md-raised md-success" type="submit" ng-disabled="outPropertyForm.$invalid" ng-click="submitProperty('out')">
+                  {{(current.property.out._id) ? 'Update' : 'Add'}} Out Property
+                </md-button>
+
+              </md-content>
+            </form>
+          </md-tab-body>
+        </md-tab>
+
+
+        <md-tab> <!-- Access Rights -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Access Rights</md-tooltip>
+            <i class="fa fa-key" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content layout="column">
+
+              <access-rights access="element.access" default-rights="defaultRights" author="element.author"></access-rights>
+
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+
+
+      </md-tabs>
+
+  </md-content>
+
+</div>

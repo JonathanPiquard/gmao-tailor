@@ -1,0 +1,1947 @@
+/* Variables */
+/* Media queries */
+@media (min-width: 371px) and (max-width: 959px) {
+  /* line 47, ../../../assets/styles/app.sass */
+  md-toast._md-left {
+    left: 0;
+  }
+
+  /* line 50, ../../../assets/styles/app.sass */
+  md-toast._md-bottom {
+    bottom: 0;
+  }
+
+  /* line 53, ../../../assets/styles/app.sass */
+  md-toast {
+    right: auto;
+    max-width: auto;
+    min-width: 304px;
+    width: auto;
+    padding: 8px;
+  }
+  /* line 60, ../../../assets/styles/app.sass */
+  md-toast .md-toast-content {
+    padding: 0 18px;
+  }
+}
+@media (max-width: 959px) and (min-width: 0) and (orientation: landscape) {
+  /* line 64, ../../../assets/styles/app.sass */
+  #view-container {
+    height: calc(100vh - 48px);
+  }
+
+  /* line 67, ../../../assets/styles/app.sass */
+  md-sidenav, md-sidenav.md-sidenav-left, md-sidenav.md-sidenav-right {
+    margin-top: 48px;
+  }
+}
+@media (max-width: 959px) and (min-width: 0) and (orientation: portrait) {
+  /* line 71, ../../../assets/styles/app.sass */
+  #view-container {
+    height: calc(100vh - 56px);
+  }
+
+  /* line 74, ../../../assets/styles/app.sass */
+  md-sidenav, md-sidenav.md-sidenav-left, md-sidenav.md-sidenav-right {
+    margin-top: 56px;
+  }
+}
+@media only screen and (min-width: 960px) {
+  /* line 78, ../../../assets/styles/app.sass */
+  #view-container {
+    height: calc(100vh - 64px);
+  }
+
+  /* line 81, ../../../assets/styles/app.sass */
+  md-sidenav, md-sidenav.md-sidenav-left, md-sidenav.md-sidenav-right {
+    margin-top: 64px;
+  }
+}
+@media (max-width: 370px) {
+  /* line 85, ../../../assets/styles/app.sass */
+  md-sidenav {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+@media (min-width: 371px) and (max-width: 456px) {
+  /* line 91, ../../../assets/styles/app.sass */
+  md-sidenav {
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+  }
+}
+@media (min-width: 640px) {
+  /* line 97, ../../../assets/styles/app.sass */
+  #blueprint > md-backdrop {
+    display: none;
+  }
+}
+@media (min-width: 750px) {
+  /* line 101, ../../../assets/styles/app.sass */
+  #view.sidenavLeftOpen > div:not(#blueprint) {
+    margin-left: 320px;
+  }
+
+  /* line 104, ../../../assets/styles/app.sass */
+  #view-container > div > md-backdrop {
+    display: none;
+  }
+}
+/* Elements */
+/* line 111, ../../../assets/styles/app.sass */
+html, body {
+  overflow: hidden;
+}
+
+/* line 114, ../../../assets/styles/app.sass */
+button > span:focus {
+  outline: 0;
+}
+
+/* line 117, ../../../assets/styles/app.sass */
+.category {
+  padding: 0 12px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+}
+/* line 125, ../../../assets/styles/app.sass */
+.category > .icon {
+  margin: 0 0 0 -12px;
+}
+
+/* line 128, ../../../assets/styles/app.sass */
+.sub-category {
+  height: 36px;
+  line-height: 36px;
+  padding: 0 10px;
+  margin: 8px 0;
+}
+/* line 134, ../../../assets/styles/app.sass */
+.sub-category > .icon {
+  margin: 0 0 0 -10px;
+}
+
+/* line 137, ../../../assets/styles/app.sass */
+.category, .sub-category {
+  position: relative;
+}
+/* line 140, ../../../assets/styles/app.sass */
+.category > .icon, .sub-category > .icon {
+  width: 36px;
+  height: inherit;
+  line-height: inherit;
+  text-align: center;
+}
+/* line 146, ../../../assets/styles/app.sass */
+.category > .actions, .sub-category > .actions {
+  position: absolute;
+  top: 0;
+  height: inherit;
+}
+/* line 151, ../../../assets/styles/app.sass */
+.category > .actions > .md-button, .sub-category > .actions > .md-button {
+  height: inherit;
+}
+
+/* line 154, ../../../assets/styles/app.sass */
+.actions.right {
+  right: 0;
+}
+
+/* line 157, ../../../assets/styles/app.sass */
+.actions > .md-button, .md-list-item-text .md-button {
+  margin: 0;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  line-height: 36px;
+}
+
+/* line 166, ../../../assets/styles/app.sass */
+.padding-content > .category {
+  margin: 0;
+}
+/* line 169, ../../../assets/styles/app.sass */
+.padding-content > .sub-category {
+  margin: 0;
+}
+
+/* line 174, ../../../assets/styles/app.sass */
+.padding-content > * {
+  margin: 18px 15px;
+}
+/* line 177, ../../../assets/styles/app.sass */
+.padding-content > .avatar-container {
+  margin: 0;
+  padding: 16px;
+}
+/* line 181, ../../../assets/styles/app.sass */
+.padding-content > md-list-item {
+  padding: 0 8px;
+}
+/* line 184, ../../../assets/styles/app.sass */
+.padding-content > md-list {
+  margin: 0;
+}
+/* line 187, ../../../assets/styles/app.sass */
+.padding-content > md-list > md-list-item {
+  padding: 0 8px;
+}
+/* line 190, ../../../assets/styles/app.sass */
+.padding-content > form {
+  margin: 0;
+}
+/* line 193, ../../../assets/styles/app.sass */
+.padding-content > form > * {
+  margin: 18px 15px;
+}
+/* line 196, ../../../assets/styles/app.sass */
+.padding-content > .md-button {
+  margin: 0 auto;
+  width: 100%;
+  padding: 6px 0;
+}
+/* line 201, ../../../assets/styles/app.sass */
+.padding-content > .md-button.reset {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 0;
+  width: 36px;
+  min-width: 36px;
+  color: #757575;
+}
+
+/* line 210, ../../../assets/styles/app.sass */
+.search {
+  margin-bottom: -40px;
+  padding: 0 15px;
+}
+
+/* line 214, ../../../assets/styles/app.sass */
+button.md-button, .md-button {
+  border-radius: 0;
+}
+/* line 217, ../../../assets/styles/app.sass */
+button.md-button .md-ripple-container, .md-button .md-ripple-container {
+  border-radius: 0;
+}
+
+/* line 220, ../../../assets/styles/app.sass */
+.right {
+  position: absolute;
+  right: 10px;
+}
+
+/* line 224, ../../../assets/styles/app.sass */
+.center {
+  text-align: center;
+}
+
+/* line 227, ../../../assets/styles/app.sass */
+.badge {
+  padding: 0.2em 0.4em;
+  font-size: small;
+  border-radius: 0;
+}
+
+/* line 233, ../../../assets/styles/app.sass */
+.md-contact-suggestion > img {
+  width: 40px;
+  margin-bottom: 8px;
+}
+/* line 237, ../../../assets/styles/app.sass */
+.md-contact-suggestion > .md-contact-name {
+  line-height: 56px;
+  font-size: 16px;
+}
+
+/* line 241, ../../../assets/styles/app.sass */
+.md-chips md-chip, .md-chips:not(.md-readonly) md-chip:not(.md-readonly) {
+  border-radius: 0;
+}
+/* line 244, ../../../assets/styles/app.sass */
+.md-chips md-chip ._md-chip-content, .md-chips:not(.md-readonly) md-chip:not(.md-readonly) ._md-chip-content {
+  padding: 0 10px;
+}
+
+/* line 247, ../../../assets/styles/app.sass */
+.md-contact-chips .md-chips md-chip .md-contact-avatar img {
+  width: 32px;
+  margin-left: -10px;
+  margin-right: 2px;
+  border-radius: 0;
+}
+
+/* line 253, ../../../assets/styles/app.sass */
+md-tab-content.md-no-scroll {
+  bottom: 0;
+}
+
+/* line 256, ../../../assets/styles/app.sass */
+md-toast {
+  border-radius: 0;
+}
+/* line 259, ../../../assets/styles/app.sass */
+md-toast .md-toast-content {
+  border-radius: 0;
+}
+
+/* line 262, ../../../assets/styles/app.sass */
+#global-container {
+  height: 100%;
+}
+/* line 266, ../../../assets/styles/app.sass */
+#global-container #appHeader md-toolbar.md-default-theme:not(.md-menu-toolbar), #global-container #appHeader md-toolbar:not(.md-menu-toolbar) {
+  background-color: #04B6A5;
+}
+/* line 269, ../../../assets/styles/app.sass */
+#global-container #appHeader md-toolbar.md-default-theme:not(.md-menu-toolbar) a.md-default-theme:not(.md-button):hover, #global-container #appHeader md-toolbar.md-default-theme:not(.md-menu-toolbar) a:not(.md-button):hover, #global-container #appHeader md-toolbar:not(.md-menu-toolbar) a.md-default-theme:not(.md-button):hover, #global-container #appHeader md-toolbar:not(.md-menu-toolbar) a:not(.md-button):hover {
+  color: rgba(255, 255, 255, 0.87);
+}
+/* line 274, ../../../assets/styles/app.sass */
+#global-container #view-container #view {
+  height: 100%;
+  width: 100%;
+}
+/* line 278, ../../../assets/styles/app.sass */
+#global-container #view-container #view > * {
+  height: 100%;
+}
+
+/* line 282, ../../../assets/styles/app.sass */
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* line 285, ../../../assets/styles/app.sass */
+md-dialog {
+  border-radius: 0;
+}
+/* line 288, ../../../assets/styles/app.sass */
+md-dialog md-dialog-content {
+  padding: 16px;
+}
+/* line 291, ../../../assets/styles/app.sass */
+md-dialog md-dialog-actions {
+  margin: 16px -8px -8px 0;
+}
+/* line 294, ../../../assets/styles/app.sass */
+md-dialog button.md-button, md-dialog .md-button {
+  border-radius: 0;
+}
+/* line 297, ../../../assets/styles/app.sass */
+md-dialog button.md-button .md-ripple-container, md-dialog .md-button .md-ripple-container {
+  border-radius: 0;
+}
+
+/* line 302, ../../../assets/styles/app.sass */
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-success, md-toolbar:not(.md-menu-toolbar).md-success {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #33FF7A;
+}
+
+/* line 306, ../../../assets/styles/app.sass */
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-primary, md-toolbar:not(.md-menu-toolbar).md-primary {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #3F51B5;
+}
+
+/* line 310, ../../../assets/styles/app.sass */
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-warn, md-toolbar:not(.md-menu-toolbar).md-warn {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #FF5722;
+}
+
+/* line 314, ../../../assets/styles/app.sass */
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-error, md-toolbar:not(.md-menu-toolbar).md-error {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #ED4242;
+}
+
+/* line 318, ../../../assets/styles/app.sass */
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-default, md-toolbar:not(.md-menu-toolbar).md-default {
+  color: rgba(0, 0, 0, 0.64);
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+/* line 324, ../../../assets/styles/app.sass */
+.md-button.md-raised[disabled], .md-button[disabled] {
+  opacity: 0.5;
+}
+
+/* line 327, ../../../assets/styles/app.sass */
+.md-button.md-fab.md-success, .md-button.md-raised.md-success:not([disabled]),
+.md-button.md-success, .md-button.md-raised.md-success, .md-button.md-success.md-default-theme[disabled],
+.md-button.md-raised.md-success[disabled], .md-button.md-success[disabled] {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #33FF7A;
+}
+
+/* line 333, ../../../assets/styles/app.sass */
+.md-button.md-success:not([disabled]).md-fab.md-focused, .md-button.md-success:not([disabled]).md-raised.md-focused,
+.md-button.md-success:not([disabled]):hover, .md-button.md-raised.md-success:not([disabled]):hover {
+  background-color: #33FF7A;
+}
+
+/* line 337, ../../../assets/styles/app.sass */
+.md-button.md-fab.md-primary, .md-button.md-raised.md-primary:not([disabled]),
+.md-button.md-primary, .md-button.md-raised.md-primary, .md-button.md-primary.md-default-theme[disabled],
+.md-button.md-raised.md-primary[disabled], .md-button.md-primary[disabled] {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #3F51B5;
+}
+
+/* line 343, ../../../assets/styles/app.sass */
+.md-button.md-primary:not([disabled]).md-fab.md-focused, .md-button.md-primary:not([disabled]).md-raised.md-focused,
+.md-button.md-primary:not([disabled]):hover, .md-button.md-raised.md-primary:not([disabled]):hover {
+  background-color: #37479e;
+}
+
+/* line 347, ../../../assets/styles/app.sass */
+.md-button.md-fab.md-warn, .md-button.md-raised.md-warn:not([disabled]),
+.md-button.md-warn, .md-button.md-raised.md-warn, .md-button.md-warn.md-default-theme[disabled],
+.md-button.md-raised.md-warn[disabled], .md-button.md-warn[disabled] {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #FF5722;
+}
+
+/* line 353, ../../../assets/styles/app.sass */
+.md-button.md-warn:not([disabled]).md-fab.md-focused, .md-button.md-warn:not([disabled]).md-raised.md-focused,
+.md-button.md-warn:not([disabled]):hover, .md-button.md-raised.md-warn:not([disabled]):hover {
+  background-color: #d54b1f;
+}
+
+/* line 357, ../../../assets/styles/app.sass */
+.md-button.md-fab.md-error, .md-button.md-raised.md-error:not([disabled]),
+.md-button.md-error, .md-button.md-raised.md-error, .md-button.md-error.md-default-theme[disabled],
+.md-button.md-raised.md-error[disabled], .md-button.md-error[disabled] {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #ED4242;
+}
+
+/* line 363, ../../../assets/styles/app.sass */
+.md-button.md-error:not([disabled]).md-fab.md-focused, .md-button.md-error:not([disabled]).md-raised.md-focused,
+.md-button.md-error:not([disabled]):hover, .md-button.md-raised.md-error:not([disabled]):hover {
+  background-color: #d53d3d;
+}
+
+/* line 367, ../../../assets/styles/app.sass */
+.md-button.md-fab.md-default, .md-button.md-raised.md-default:not([disabled]),
+.md-button.md-default, .md-button.md-raised.md-default, .md-button.md-default.md-default-theme[disabled],
+.md-button.md-raised.md-default[disabled], .md-button.md-default[disabled] {
+  color: rgba(0, 0, 0, 0.64);
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+/* line 373, ../../../assets/styles/app.sass */
+.md-button.md-default:not([disabled]).md-fab.md-focused, .md-button.md-default:not([disabled]).md-raised.md-focused,
+.md-button.md-default:not([disabled]):hover, .md-button.md-raised.md-default:not([disabled]):hover {
+  background-color: rgba(245, 245, 245, 0.87);
+}
+
+/* line 378, ../../../assets/styles/app.sass */
+.md-toast.md-success > .md-toast-content {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #33FF7A;
+}
+
+/* line 382, ../../../assets/styles/app.sass */
+.md-toast.md-success:hover > .md-toast-content {
+  background-color: #33FF7A;
+}
+
+/* line 385, ../../../assets/styles/app.sass */
+.md-toast.md-error > .md-toast-content {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #ED4242;
+}
+
+/* line 389, ../../../assets/styles/app.sass */
+.md-toast.md-error:hover > .md-toast-content {
+  background-color: #d53d3d;
+}
+
+/* line 392, ../../../assets/styles/app.sass */
+.md-toast.md-default > .md-toast-content {
+  color: rgba(0, 0, 0, 0.64);
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+/* line 396, ../../../assets/styles/app.sass */
+.md-toast.md-default:hover > .md-toast-content {
+  background-color: rgba(245, 245, 245, 0.87);
+}
+
+/* line 401, ../../../assets/styles/app.sass */
+md-dialog md-dialog-content:not([layout=row]) > :first-child:not(.md-subheader) {
+  margin-top: 18px;
+}
+
+/* line 406, ../../../assets/styles/app.sass */
+.md-primary-bg {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #3F51B5;
+}
+
+/* line 410, ../../../assets/styles/app.sass */
+.md-success-bg {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #33FF7A;
+}
+
+/* line 414, ../../../assets/styles/app.sass */
+.md-warn-bg {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #FF5722;
+}
+
+/* line 418, ../../../assets/styles/app.sass */
+.md-error-bg {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #ED4242;
+}
+
+/* line 422, ../../../assets/styles/app.sass */
+.md-default-bg {
+  color: rgba(0, 0, 0, 0.64);
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+/* line 426, ../../../assets/styles/app.sass */
+.md-red-purple-bg {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #d92663;
+}
+
+/* line 432, ../../../assets/styles/app.sass */
+.md-primary {
+  color: #3F51B5;
+}
+
+/* line 435, ../../../assets/styles/app.sass */
+.md-success {
+  color: #33FF7A;
+}
+
+/* line 438, ../../../assets/styles/app.sass */
+.md-warn {
+  color: #FF5722;
+}
+
+/* line 441, ../../../assets/styles/app.sass */
+.md-error {
+  color: #ED4242;
+}
+
+/* line 444, ../../../assets/styles/app.sass */
+.md-default {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+/* line 447, ../../../assets/styles/app.sass */
+.md-red-purple {
+  color: #d92663;
+}
+
+
+/* line 11, ../../../assets/styles/appHeader.sass */
+#appHeader .md-toolbar-tools {
+  font-size: 25px;
+}
+/* line 15, ../../../assets/styles/appHeader.sass */
+#appHeader .md-toolbar-tools > a img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+/* line 20, ../../../assets/styles/appHeader.sass */
+#appHeader .md-toolbar-tools > a h1 {
+  margin: auto;
+}
+/* line 23, ../../../assets/styles/appHeader.sass */
+#appHeader .md-toolbar-tools .sidenavToggle {
+  color: rgba(255, 255, 255, 0.87);
+  padding: 0;
+  min-height: initial;
+  height: inherit;
+  min-width: 30px;
+  width: 30px;
+}
+/* line 31, ../../../assets/styles/appHeader.sass */
+#appHeader .md-toolbar-tools #sidenavToggleLeft {
+  margin: 0 16px 0 -16px;
+  border-right: 1px solid #04AE9E;
+}
+/* line 35, ../../../assets/styles/appHeader.sass */
+#appHeader .md-toolbar-tools #sidenavToggleRight {
+  margin: 0 -16px 0 0;
+  border-left: 1px solid #04AE9E;
+}
+
+/* line 14, ../../../../assets/styles/components/confirmDeleteDialog.sass */
+form[name='confirmDeleteDialogForm'] md-dialog-content h4 {
+  font-weight: initial;
+}
+
+/* line 12, ../../../../assets/styles/components/updateChatDialog.sass */
+form[name='updateChatDialogForm'] md-dialog-content {
+  padding: 16px;
+}
+/* line 17, ../../../../assets/styles/components/updateChatDialog.sass */
+form[name='updateChatDialogForm'] md-dialog-content md-list .search, form[name='updateChatDialogForm'] md-dialog-content md-list md-list-item {
+  padding: 0;
+}
+/* line 20, ../../../../assets/styles/components/updateChatDialog.sass */
+form[name='updateChatDialogForm'] md-dialog-actions {
+  margin: 16px -8px -8px 0;
+}
+
+/* line 12, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-tabs-canvas.md-center-tabs .md-tab {
+  width: calc(100% / 2);
+}
+/* line 15, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-list-item.md-3-line, .access-rights md-list-item {
+  min-height: initial;
+  padding: 12px;
+}
+/* line 19, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-list-item._md-no-proxy, .access-rights md-list-item ._md-list-item-inner, .access-rights md-list-item.md-3-line > ._md-no-style {
+  min-height: initial;
+  padding: 0;
+}
+/* line 24, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights .md-list-item-text > .md-button {
+  position: absolute;
+  right: -12px;
+  top: 0;
+}
+/* line 29, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights .md-list-item-text > h3 {
+  margin: 0 0 8px 0;
+}
+/* line 34, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights .md-list-item-text > div > h4 {
+  margin: 0 0 1px;
+}
+/* line 37, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights .search {
+  padding: 0 12px;
+}
+/* line 40, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-checkbox:first-child {
+  margin: 0;
+}
+/* line 43, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-checkbox {
+  margin: 0 0 0 12px;
+  min-width: initial;
+  height: 17.5px;
+  line-height: 29px;
+}
+/* line 49, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-checkbox ._md-container {
+  position: relative;
+  top: initial;
+  left: initial;
+  right: initial;
+  width: initial;
+  height: initial;
+  -webkit-transform: initial;
+  transform: initial;
+}
+/* line 59, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-checkbox ._md-icon {
+  width: 17.5px;
+  height: 17.5px;
+  position: relative;
+  border-radius: 0;
+}
+/* line 65, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-checkbox ._md-label {
+  margin-top: -10px;
+  margin-left: 5px;
+}
+/* line 69, ../../../../assets/styles/directives/accessRights.sass */
+.access-rights md-checkbox.md-checked ._md-icon:after {
+  left: 5.75px;
+  top: 1px;
+}
+
+/* line 10, ../../../../assets/styles/directives/avatar.sass */
+.avatar-container {
+  position: relative;
+}
+/* line 13, ../../../../assets/styles/directives/avatar.sass */
+.avatar-container > img {
+  width: 128px;
+  height: 128px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 50%;
+}
+/* line 20, ../../../../assets/styles/directives/avatar.sass */
+.avatar-container .avatar-button {
+  height: 40px;
+  min-height: 40px;
+  line-height: 40px;
+  position: absolute;
+  top: 6px;
+  right: 2px;
+}
+/* line 28, ../../../../assets/styles/directives/avatar.sass */
+.avatar-container .avatar-button > span {
+  margin-left: 6px;
+}
+/* line 31, ../../../../assets/styles/directives/avatar.sass */
+.avatar-container #input-avatar {
+  display: none;
+}
+
+/* Commun */
+/* line 12, ../../../../../assets/styles/directives/codeMirror/codeMirror.sass */
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler {
+  background-color: inherit;
+}
+
+/* line 15, ../../../../../assets/styles/directives/codeMirror/codeMirror.sass */
+.CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {
+  border-radius: 0;
+}
+
+/* line 11, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror {
+  background: #1d1d1b;
+  color: #666;
+  /* Scroll */
+}
+/* line 15, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror div.CodeMirror-selected {
+  color: #fff;
+  background: #343434;
+}
+/* line 19, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-activeline-background {
+  background: #000;
+}
+/* line 22, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-matchingbracket {
+  background: #555 !important;
+  color: #fff !important;
+}
+/* line 26, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-gutters {
+  background: #1d1d1b;
+  min-width: 41px;
+  border-right: 0px;
+}
+/* line 31, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-linenumber {
+  color: #555;
+  cursor: default;
+}
+/* line 35, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-cursor {
+  border-left: 1px solid white;
+}
+/* line 38, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-comment {
+  color: #97a3aa;
+}
+/* line 41, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-atom {
+  color: #e1c76e;
+}
+/* line 44, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-number {
+  color: #6cb5d9;
+}
+/* line 47, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-property {
+  color: #eee;
+}
+/* line 50, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-operator {
+  color: #9179bb;
+}
+/* line 53, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-attribute {
+  color: #099;
+}
+/* line 56, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-keyword {
+  color: #eee;
+}
+/* line 60, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-builtin {
+  color: #214e7b;
+}
+/* line 63, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-string {
+  color: #b9ca4a;
+}
+/* line 66, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-string-2 {
+  color: #6cb5d9;
+}
+/* line 69, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-meta {
+  color: #555;
+}
+/* line 72, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-qualifier {
+  color: #555;
+}
+/* line 75, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-variable {
+  color: #6cb5d9;
+}
+/* line 78, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-variable-2 {
+  color: #cc1e5c;
+}
+/* line 81, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-variable-3 {
+  color: #f9602c;
+}
+/* line 84, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-def {
+  color: #b9ca4a;
+}
+/* line 87, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-bracket {
+  color: #cc7;
+}
+/* line 90, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-tag {
+  color: #e8e8e8;
+}
+/* line 93, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-header {
+  color: #6a0d6a;
+}
+/* line 96, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-quote {
+  color: #186718;
+}
+/* line 99, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-hr {
+  color: #888;
+}
+/* line 102, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-link {
+  color: #e1c76e;
+}
+/* line 105, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror span.cm-error {
+  color: #d00;
+}
+/* line 110, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-overlayscroll-horizontal, .cm-s-icecoder.CodeMirror .CodeMirror-overlayscroll-vertical {
+  /* no background : transparent */
+}
+/* line 113, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-overlayscroll-horizontal div, .cm-s-icecoder.CodeMirror .CodeMirror-overlayscroll-vertical div {
+  background: #252523;
+  border: 1px solid #272725;
+}
+/* line 117, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-simplescroll-horizontal, .cm-s-icecoder.CodeMirror .CodeMirror-simplescroll-vertical {
+  background: #121211;
+}
+/* line 120, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-simplescroll-horizontal div, .cm-s-icecoder.CodeMirror .CodeMirror-simplescroll-vertical div {
+  background: #252523;
+  border: 1px solid #272725;
+}
+/* line 124, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-simplescroll-horizontal div {
+  top: 1px;
+}
+/* line 127, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.cm-s-icecoder.CodeMirror .CodeMirror-simplescroll-vertical div {
+  left: 1px;
+}
+
+/* line 132, ../../../../../../assets/styles/directives/codeMirror/themes/icecoder.sass */
+.CodeMirror.cm-s-icecoder.CodeMirror-simplescroll .CodeMirror-gutter-filler, .CodeMirror.cm-s-icecoder.CodeMirror-simplescroll .CodeMirror-scrollbar-filler {
+  background-color: #121211;
+}
+
+/* line 10, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror {
+  background: #272822;
+  color: #f8f8f2;
+  /* Scroll */
+}
+/* line 14, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror div.CodeMirror-selected {
+  background: #49483E;
+}
+/* line 17, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-activeline-background {
+  background: #373831;
+}
+/* line 20, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
+/* line 24, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-line::selection, .cm-s-monokai.CodeMirror .CodeMirror-line > span::selection, .cm-s-monokai.CodeMirror .CodeMirror-line > span > span::selection,
+.cm-s-monokai.CodeMirror .CodeMirror-line::-moz-selection, .cm-s-monokai.CodeMirror .CodeMirror-line > span::-moz-selection, .cm-s-monokai.CodeMirror .CodeMirror-line > span > span::-moz-selection {
+  background: rgba(73, 72, 62, 0.99);
+}
+/* line 28, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-gutters {
+  background: #2D2D2B;
+  border-right: 0px;
+}
+/* line 32, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-guttermarker {
+  color: white;
+}
+/* line 35, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-guttermarker-subtle {
+  color: #d0d0d0;
+}
+/* line 38, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-linenumber {
+  color: #d0d0d0;
+}
+/* line 41, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-cursor {
+  border-left: 1px solid #f8f8f0;
+}
+/* line 44, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-comment {
+  color: #75715e;
+}
+/* line 47, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-atom {
+  color: #ae81ff;
+}
+/* line 50, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-number {
+  color: #ae81ff;
+}
+/* line 53, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-property, .cm-s-monokai.CodeMirror span.cm-attribute {
+  color: #a6e22e;
+}
+/* line 56, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-keyword {
+  color: #f92672;
+}
+/* line 59, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-builtin {
+  color: #66d9ef;
+}
+/* line 62, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-string {
+  color: #e6db74;
+}
+/* line 65, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-variable {
+  color: #f8f8f2;
+}
+/* line 68, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-variable-2 {
+  color: #9effff;
+}
+/* line 71, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-variable-3 {
+  color: #66d9ef;
+}
+/* line 74, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-def {
+  color: #fd971f;
+}
+/* line 77, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-bracket {
+  color: #f8f8f2;
+}
+/* line 80, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-tag {
+  color: #f92672;
+}
+/* line 83, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-header {
+  color: #ae81ff;
+}
+/* line 86, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-link {
+  color: #ae81ff;
+}
+/* line 89, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror span.cm-error {
+  background: #f92672;
+  color: #f8f8f0;
+}
+/* line 95, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-overlayscroll-horizontal, .cm-s-monokai.CodeMirror .CodeMirror-overlayscroll-vertical {
+  /* no background : transparent */
+}
+/* line 98, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-overlayscroll-horizontal div, .cm-s-monokai.CodeMirror .CodeMirror-overlayscroll-vertical div {
+  background: #2D2D2B;
+  border: 1px solid #2F2F2F;
+}
+/* line 102, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-simplescroll-horizontal, .cm-s-monokai.CodeMirror .CodeMirror-simplescroll-vertical {
+  background: #21221D;
+}
+/* line 105, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-simplescroll-horizontal div, .cm-s-monokai.CodeMirror .CodeMirror-simplescroll-vertical div {
+  background: #2D2D2B;
+  border: 1px solid #2F2F2F;
+}
+/* line 109, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-simplescroll-horizontal div {
+  top: 1px;
+}
+/* line 112, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.cm-s-monokai.CodeMirror .CodeMirror-simplescroll-vertical div {
+  left: 1px;
+}
+
+/* line 117, ../../../../../../assets/styles/directives/codeMirror/themes/monokai.sass */
+.CodeMirror.cm-s-monokai.CodeMirror-simplescroll .CodeMirror-gutter-filler, .CodeMirror.cm-s-monokai.CodeMirror-simplescroll .CodeMirror-scrollbar-filler {
+  background-color: #21221D;
+}
+
+/* line 12, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark.CodeMirror {
+  background: #2f1e2e;
+  color: #b9b6b0;
+}
+
+/* line 16, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark {
+  /* Scroll */
+}
+/* line 18, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark div.CodeMirror-selected {
+  background: #41323f;
+}
+/* line 21, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-activeline-background {
+  background: #4D344A;
+}
+/* line 24, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
+/* line 28, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-line::selection, .cm-s-paraiso-dark .CodeMirror-line > span::selection, .cm-s-paraiso-dark .CodeMirror-line > span > span::selection,
+.cm-s-paraiso-dark .CodeMirror-line::-moz-selection, .cm-s-paraiso-dark .CodeMirror-line > span::-moz-selection, .cm-s-paraiso-dark .CodeMirror-line > span > span::-moz-selection {
+  background: rgba(65, 50, 63, 0.99);
+}
+/* line 32, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-gutters {
+  background: #2f1e2e;
+  border-right: 0px;
+}
+/* line 36, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-guttermarker {
+  color: #ef6155;
+}
+/* line 39, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-guttermarker-subtle {
+  color: #776e71;
+}
+/* line 42, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-linenumber {
+  color: #776e71;
+}
+/* line 45, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-cursor {
+  border-left: 1px solid #8d8687;
+}
+/* line 48, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-comment {
+  color: #84758A;
+}
+/* line 51, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-atom {
+  color: #815ba4;
+}
+/* line 54, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-number {
+  color: #815ba4;
+}
+/* line 58, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-property, .cm-s-paraiso-dark span.cm-attribute {
+  color: #48b685;
+}
+/* line 61, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-keyword {
+  color: #ef6155;
+}
+/* line 64, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-string {
+  color: #fec418;
+}
+/* line 68, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-variable {
+  color: #48b685;
+}
+/* line 71, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-variable-2 {
+  color: #06b6ef;
+}
+/* line 74, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-def {
+  color: #f99b15;
+}
+/* line 77, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-bracket {
+  color: #b9b6b0;
+}
+/* line 80, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-tag {
+  color: #ef6155;
+}
+/* line 83, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-link {
+  color: #815ba4;
+}
+/* line 86, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark span.cm-error {
+  background: #ef6155;
+  color: #8d8687;
+}
+/* line 92, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-overlayscroll-horizontal, .cm-s-paraiso-dark .CodeMirror-overlayscroll-vertical {
+  /* no background : transparent */
+}
+/* line 95, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-overlayscroll-horizontal div, .cm-s-paraiso-dark .CodeMirror-overlayscroll-vertical div {
+  background: #3A2639;
+  border: 1px solid #3E293D;
+}
+/* line 99, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-simplescroll-horizontal, .cm-s-paraiso-dark .CodeMirror-simplescroll-vertical {
+  background: #261b26;
+}
+/* line 102, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-simplescroll-horizontal div, .cm-s-paraiso-dark .CodeMirror-simplescroll-vertical div {
+  background: #3A2639;
+  border: 1px solid #3E293D;
+}
+/* line 106, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-simplescroll-horizontal div {
+  top: 1px;
+}
+/* line 109, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.cm-s-paraiso-dark .CodeMirror-simplescroll-vertical div {
+  left: 1px;
+}
+
+/* line 114, ../../../../../../assets/styles/directives/codeMirror/themes/paraiso-dark.sass */
+.CodeMirror.cm-s-icecoder.CodeMirror-simplescroll .CodeMirror-gutter-filler, .CodeMirror.cm-s-icecoder.CodeMirror-simplescroll .CodeMirror-scrollbar-filler {
+  background-color: #261b26;
+}
+
+/* line 10, ../../../../assets/styles/directives/contextMenu.sass */
+#context-menu {
+  display: none;
+}
+
+/* line 13, ../../../../assets/styles/directives/contextMenu.sass */
+#context-menu-content {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 9, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* line 15, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll > .ngscroll-content-container {
+  margin-top: 0;
+  margin-left: 0;
+}
+/* line 19, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll > .ng-scrollbar-filler {
+  position: absolute;
+  background-color: #E7E7E7;
+  bottom: 0;
+  right: 0;
+}
+/* line 25, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll > .ngscrollbar-container {
+  transition: background 0.3s ease-in-out;
+  position: absolute;
+  background-color: #E7E7E7;
+  border-radius: 0;
+}
+/* line 31, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll > .ngscrollbar-container > .ngscrollbar {
+  cursor: default;
+  position: absolute;
+  background-color: #BFBFBF;
+  border-radius: 0;
+}
+/* line 37, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll > .ngscrollbar-container.ngscrollbar-container-x {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+/* line 42, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll > .ngscrollbar-container.ngscrollbar-container-y {
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+
+/* line 50, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.small > .ng-scrollbar-filler {
+  height: 6px;
+  width: 6px;
+}
+/* line 54, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.small > .ngscrollbar-container.ngscrollbar-container-x {
+  height: 6px;
+}
+/* line 57, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.small > .ngscrollbar-container.ngscrollbar-container-x > .ngscrollbar {
+  height: 6px;
+}
+/* line 60, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.small > .ngscrollbar-container.ngscrollbar-container-y {
+  width: 6px;
+}
+/* line 63, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.small > .ngscrollbar-container.ngscrollbar-container-y > .ngscrollbar {
+  width: 6px;
+}
+
+/* line 69, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.medium > .ng-scrollbar-filler {
+  height: 9px;
+  width: 9px;
+}
+/* line 73, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.medium > .ngscrollbar-container.ngscrollbar-container-x {
+  height: 9px;
+}
+/* line 76, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.medium > .ngscrollbar-container.ngscrollbar-container-x > .ngscrollbar {
+  height: 9px;
+}
+/* line 79, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.medium > .ngscrollbar-container.ngscrollbar-container-y {
+  width: 9px;
+}
+/* line 82, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.medium > .ngscrollbar-container.ngscrollbar-container-y > .ngscrollbar {
+  width: 9px;
+}
+
+/* line 88, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.large > .ng-scrollbar-filler {
+  height: 12px;
+  width: 12px;
+}
+/* line 92, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.large > .ngscrollbar-container.ngscrollbar-container-x {
+  height: 12px;
+}
+/* line 95, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.large > .ngscrollbar-container.ngscrollbar-container-x > .ngscrollbar {
+  height: 12px;
+}
+/* line 98, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.large > .ngscrollbar-container.ngscrollbar-container-y {
+  width: 12px;
+}
+/* line 101, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.large > .ngscrollbar-container.ngscrollbar-container-y > .ngscrollbar {
+  width: 12px;
+}
+
+/* scrollbar with overlay : auto hide and show on hover */
+/* line 108, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.ngscroll-overlay > .ngscrollbar-container {
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* line 115, ../../../../assets/styles/directives/ngScroll.sass */
+.ngscroll.ngscroll-overlay:hover > .ngscrollbar-container {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: landscape) {
+  /* line 12, ../../../assets/styles/sidenav.sass */
+  #chat {
+    height: calc(100vh - 228px - 48px);
+  }
+}
+@media (max-width: 959px) and (min-width: 0) and (orientation: portrait) {
+  /* line 16, ../../../assets/styles/sidenav.sass */
+  #chat {
+    height: calc(100vh - 228px - 56px);
+  }
+}
+@media only screen and (min-width: 960px) {
+  /* line 20, ../../../assets/styles/sidenav.sass */
+  #chat {
+    height: calc(100vh - 228px - 64px);
+  }
+}
+/* line 27, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left > md-content {
+  display: block;
+  height: 100%;
+}
+/* line 31, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left > md-content > md-list {
+  padding: 0;
+}
+/* line 36, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left > md-content > md-list md-list-item._md-button-wrap > .md-button:first-child ._md-list-item-inner {
+  width: initial;
+}
+/* line 39, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left > md-content > md-list md-list-item._md-button-wrap > .md-button:first-child ._md-list-item-inner .md-avatar, .md-sidenav-left > md-content > md-list md-list-item._md-button-wrap > .md-button:first-child ._md-list-item-inner .md-avatar {
+  width: 92px;
+  height: 92px;
+  margin: 16px 16px 0 0;
+}
+/* line 44, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left > md-content > md-list md-list-item._md-button-wrap > .md-button:first-child ._md-list-item-inner .md-list-item-text {
+  margin: 16px 0 0 0;
+}
+/* line 47, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #logout {
+  position: absolute;
+  top: 0px;
+  right: 2.5px;
+  font-size: 17px;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+}
+/* line 57, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left .md-subheader, .md-sidenav-left .md-subheader.md-default-theme {
+  background-color: #fff;
+  margin: 28px 0 20px 16px;
+}
+/* line 61, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left .md-subheader ._md-subheader-inner, .md-sidenav-left .md-subheader.md-default-theme ._md-subheader-inner {
+  padding: 0;
+}
+/* line 64, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left .md-subheader ._md-subheader-inner ._md-subheader-content > .fa, .md-sidenav-left .md-subheader.md-default-theme ._md-subheader-inner ._md-subheader-content > .fa {
+  width: 28px;
+}
+/* line 67, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat {
+  overflow: hidden;
+  width: 100%;
+  min-height: 500px;
+}
+/* line 72, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat .no-content {
+  display: flex;
+  margin-top: -30px;
+  height: 100%;
+}
+/* line 77, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat .no-content > p {
+  margin: auto;
+  text-align: center;
+}
+/* line 81, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] {
+  /* textarea container */
+}
+/* line 85, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] > md-content > md-list-item {
+  background-color: #7fdfa1;
+  margin: 0;
+  flex: initial;
+}
+/* line 90, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] > md-content > md-list-item > .md-avatar {
+  margin-top: 16px;
+}
+/* line 93, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] > md-content > md-list-item > .md-list-item-text {
+  display: block;
+}
+/* line 96, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] > md-content > md-list-item > .md-list-item-text h4 {
+  color: #F0EFEF;
+}
+/* line 99, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] md-list {
+  height: calc(100% - 220px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-bottom: 3px solid #7FDFA1;
+}
+/* line 106, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] md-input-container {
+  height: 36px;
+  margin: 0;
+}
+/* line 110, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] md-input-container input {
+  border: none;
+  overflow-y: auto;
+  padding: 0 10px;
+}
+/* line 115, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] .message {
+  min-height: initial;
+  margin: 7.5px 0 7.5px 0;
+}
+/* line 119, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] .message h3 {
+  background-color: #04B6A5;
+  color: #fff;
+  padding: 5px 10px;
+  overflow: auto;
+  white-space: pre-wrap;
+  text-overflow: initial;
+}
+/* line 127, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] .message h3.yourself {
+  background-color: #FF0071;
+}
+/* line 130, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] .message p {
+  font-size: 11px;
+}
+/* line 133, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] .message .md-avatar {
+  margin: -6px 0 4px 0;
+}
+/* line 136, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat form[name="chatForm"] .message .md-list-item-text {
+  margin: 0 4px;
+}
+/* line 139, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat md-pagination-wrapper.md-center-tabs {
+  min-width: 100%;
+}
+/* line 142, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat md-tabs-canvas.md-center-tabs .md-tab {
+  width: calc(100% / 4);
+}
+/* line 145, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat md-tabs,
+.md-sidenav-left #chat md-tabs > md-tabs-content-wrapper,
+.md-sidenav-left #chat md-tabs > md-tabs-content-wrapper > md-tab-content,
+.md-sidenav-left #chat md-tabs > md-tabs-content-wrapper > md-tab-content > div,
+.md-sidenav-left #chat md-tabs > md-tabs-content-wrapper > md-tab-content > div md-content,
+.md-sidenav-left #chat md-tabs > md-tabs-content-wrapper > md-tab-content > div form {
+  height: 100%;
+}
+/* line 153, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat md-list-item.active {
+  background-color: #E9E9E9;
+}
+/* line 157, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat .md-list-item-text > .actions {
+  top: 0;
+}
+/* line 160, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat .md-list-item-text .connected, .md-sidenav-left #chat .md-list-item-text .disconnected {
+  padding: 0 8px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+/* line 165, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat .md-list-item-text .connected {
+  background-color: #1dc758;
+}
+/* line 168, ../../../assets/styles/sidenav.sass */
+.md-sidenav-left #chat .md-list-item-text .disconnected {
+  background-color: #656565;
+}
+
+/* line 10, ../../../../assets/styles/states/auth.sass */
+#auth {
+  background: url("/images/background8.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+}
+/* line 16, ../../../../assets/styles/states/auth.sass */
+#auth > md-content {
+  width: 100%;
+  overflow-x: hidden;
+}
+/* line 20, ../../../../assets/styles/states/auth.sass */
+#auth > md-content > form {
+  background-color: #fff;
+  margin: 20px auto;
+}
+/* line 24, ../../../../assets/styles/states/auth.sass */
+#auth > md-content > form > md-input-container {
+  margin: 18px 15px;
+}
+/* line 27, ../../../../assets/styles/states/auth.sass */
+#auth > md-content > form .md-button.md-upload {
+  margin: 18px auto 32px auto;
+  display: block;
+}
+/* line 31, ../../../../assets/styles/states/auth.sass */
+#auth > md-content > form .md-button[type="submit"] {
+  width: 100%;
+  margin: 12px auto;
+  padding: 4px 6px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 450px) {
+  /* line 38, ../../../../assets/styles/states/auth.sass */
+  #auth > md-content {
+    margin: 0;
+    width: 100%;
+  }
+  /* line 42, ../../../../assets/styles/states/auth.sass */
+  #auth > md-content > form {
+    margin: 0;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 451px) {
+  /* line 47, ../../../../assets/styles/states/auth.sass */
+  #auth > md-content {
+    margin: auto;
+  }
+  /* line 50, ../../../../assets/styles/states/auth.sass */
+  #auth > md-content > form {
+    width: 400px;
+    max-width: 400px;
+  }
+}
+@media only screen and (min-width: 750px) {
+  /* line 55, ../../../../assets/styles/states/auth.sass */
+  #auth > md-content > form {
+    width: calc(100% - 70px);
+  }
+}
+
+/* Media Queries */
+/* Elements */
+/* line 20, ../../../../assets/styles/states/blueprint.sass */
+#blueprint #blueprintCanvas {
+  height: 100%;
+  width: 100%;
+  background-image: url(/images/blueprintPattern.png);
+  background-repeat: repeat;
+}
+/* line 26, ../../../../assets/styles/states/blueprint.sass */
+#blueprint #documentation-description {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: justify;
+}
+/* line 30, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .required {
+  font-style: italic;
+  font-weight: 600;
+  color: #e01b1b;
+}
+/* line 35, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-chips.tags md-chips-wrap {
+  margin-bottom: 45px;
+}
+/* line 38, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .md-chips ._md-chip-input-container {
+  width: 100%;
+}
+/* line 41, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-tab-content > div > md-content > form > .md-button {
+  margin: 20px 0 0 0;
+  width: 100%;
+}
+/* line 45, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-pagination-wrapper.md-center-tabs {
+  min-width: 100%;
+}
+/* line 48, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-tabs-canvas.md-center-tabs .md-tab {
+  width: calc(100% / 6);
+  padding: 12px 0;
+}
+/* line 52, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-tabs.md-default-theme, #blueprint md-tabs .md-tab.md-active, #blueprint md-tabs.md-default-theme, #blueprint md-tabs .md-tab.md-active md-icon, #blueprint md-tabs.md-default-theme, #blueprint md-tabs .md-tab.md-focused, #blueprint md-tabs.md-default-theme, #blueprint md-tabs .md-tab.md-focused md-icon {
+  color: #3f51b5;
+}
+/* line 55, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-tabs.md-default-theme, #blueprint md-tabs .md-tab {
+  color: #222;
+}
+/* line 58, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-autocomplete[md-floating-label] {
+  margin: -18px auto;
+}
+/* line 62, ../../../../assets/styles/states/blueprint.sass */
+#blueprint form.layout-padding > md-content {
+  overflow: hidden;
+}
+/* line 66, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .layout-padding > .category {
+  margin: 0.75em -8px 0 -8px;
+}
+/* line 69, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .layout-padding > .sub-category {
+  padding: 0 10px;
+  margin: 15px -4px;
+}
+/* line 73, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-list-item {
+  padding: 10px;
+  height: auto;
+  min-height: auto;
+  margin-bottom: -1px;
+  border-top: 1px solid #E1E1E1;
+  border-bottom: 1px solid #E1E1E1;
+}
+/* line 81, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-list-item md-switch {
+  overflow: hidden;
+}
+/* line 84, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-list-item.md-3-line .md-list-item-text p {
+  padding: 2px 0;
+}
+/* line 87, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-list-item ._md-no-style, #blueprint md-list-item._md-no-proxy {
+  position: relative;
+  padding: 8px 12px;
+}
+/* line 91, ../../../../assets/styles/states/blueprint.sass */
+#blueprint md-list-item ._md-no-style .right, #blueprint md-list-item._md-no-proxy .right {
+  right: 12px;
+}
+/* line 94, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .search {
+  padding: 0 7.5px;
+}
+/* line 97, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .md-switch-secondary {
+  padding: 12px 5px;
+  position: relative;
+}
+/* line 101, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .md-switch-secondary p {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 0;
+}
+/* line 107, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .md-switch-secondary md-switch {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  -webkit-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0);
+}
+/* line 115, ../../../../assets/styles/states/blueprint.sass */
+#blueprint .md-switch-secondary md-switch ._md-container {
+  position: absolute;
+  right: 0;
+}
+
+/* line 119, ../../../../assets/styles/states/blueprint.sass */
+md-list.md-default-theme md-list-item.md-2-line .md-list-item-text div, md-list md-list-item.md-2-line .md-list-item-text div, md-list.md-default-theme md-list-item.md-3-line .md-list-item-text div, md-list md-list-item.md-3-line .md-list-item-text div {
+  color: rgba(0, 0, 0, 0.725);
+}
+
+/* line 122, ../../../../assets/styles/states/blueprint.sass */
+.layout-padding, .layout-padding-gt-sm, .layout-padding-md {
+  padding: 8px;
+}
+
+/* line 125, ../../../../assets/styles/states/blueprint.sass */
+.layout-padding-gt-sm > *, .layout-padding-md > *, .layout-padding > *, .layout-padding > .flex, .layout-padding > .flex-gt-sm, .layout-padding > .flex-md {
+  padding: 0;
+}
+
+/* line 128, ../../../../assets/styles/states/blueprint.sass */
+md-backdrop.md-opaque.md-default-theme, md-backdrop.md-opaque {
+  background-color: rgba(33, 33, 33, 0);
+}
+
+/* line 12, ../../../../assets/styles/states/element.sass */
+#element md-pagination-wrapper.md-center-tabs {
+  min-width: 100%;
+}
+/* line 17, ../../../../assets/styles/states/element.sass */
+#element md-pagination-wrapper.md-center-tabs md-tab-item > .fa.fa-indent + .fa.fa-list {
+  margin-left: -5px;
+}
+/* line 20, ../../../../assets/styles/states/element.sass */
+#element md-pagination-wrapper.md-center-tabs md-tab-item > .fa.fa-list + .fa.fa-outdent {
+  margin-left: -5px;
+}
+/* line 26, ../../../../assets/styles/states/element.sass */
+#element > md-content > md-tabs > md-tabs-wrapper > md-tabs-canvas.md-center-tabs .md-tab {
+  width: calc(100% / 6);
+  padding: 12px 20px;
+}
+/* line 30, ../../../../assets/styles/states/element.sass */
+#element md-chips {
+  margin-top: 0;
+}
+/* line 33, ../../../../assets/styles/states/element.sass */
+#element md-list-item {
+  min-height: 48px;
+}
+/* line 36, ../../../../assets/styles/states/element.sass */
+#element md-list-item > .md-list-item-text {
+  margin: 12px auto 12px auto;
+}
+/* line 39, ../../../../assets/styles/states/element.sass */
+#element md-list-item > .md-list-item-text > .actions.right {
+  top: 0;
+}
+/* line 44, ../../../../assets/styles/states/element.sass */
+#element form[name="inPropertyForm"] md-content, #element form[name="outPropertyForm"] md-content {
+  padding-top: 16px;
+}
+/* line 49, ../../../../assets/styles/states/element.sass */
+#element .padding-content > md-switch:last-of-type {
+  margin-left: 15px;
+}
+/* line 52, ../../../../assets/styles/states/element.sass */
+#element .padding-content > .code-mirror-container {
+  margin: 0;
+}
+/* line 57, ../../../../assets/styles/states/element.sass */
+#element .padding-content > .category > md-switch, #element .padding-content > .sub-category > md-switch {
+  margin: auto 5px;
+  line-height: inherit;
+  height: inherit;
+}
+/* line 62, ../../../../assets/styles/states/element.sass */
+#element .padding-content > .category > md-select, #element .padding-content > .sub-category > md-select {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0 0 4px 8px;
+  margin: 0;
+  background-color: #4456bc;
+}
+/* line 71, ../../../../assets/styles/states/element.sass */
+#element .padding-content > .category > md-select > ._md-select-value, #element .padding-content > .sub-category > md-select > ._md-select-value {
+  border-bottom: none;
+}
+/* line 76, ../../../../assets/styles/states/element.sass */
+#element .padding-content > .category > md-select.md-default-theme:not([disabled]):focus ._md-select-value, #element .padding-content > .category md-select:not([disabled]):focus ._md-select-value, #element .padding-content > .sub-category > md-select.md-default-theme:not([disabled]):focus ._md-select-value, #element .padding-content > .sub-category md-select:not([disabled]):focus ._md-select-value {
+  color: rgba(255, 255, 255, 0.87);
+  border-bottom-color: rgba(255, 255, 255, 0.87);
+}
+
+/* line 14, ../../../../assets/styles/states/group.sass */
+#group md-toolbar > .md-toolbar-tools {
+  padding: 0 0 0 16px;
+}
+/* line 17, ../../../../assets/styles/states/group.sass */
+#group md-toolbar > .md-toolbar-tools .md-button {
+  margin: -16px auto;
+  line-height: 64px;
+  min-height: 64px;
+  min-width: 45px;
+}
+/* line 23, ../../../../assets/styles/states/group.sass */
+#group md-pagination-wrapper.md-center-tabs {
+  min-width: 100%;
+}
+/* line 26, ../../../../assets/styles/states/group.sass */
+#group md-tabs-canvas.md-center-tabs .md-tab {
+  width: calc(100% / 5);
+  padding: 12px 20px;
+}
+/* line 30, ../../../../assets/styles/states/group.sass */
+#group md-list-item {
+  padding: 0 16px;
+}
+/* line 33, ../../../../assets/styles/states/group.sass */
+#group md-chips {
+  max-height: 70px;
+}
+/* line 36, ../../../../assets/styles/states/group.sass */
+#group md-chips .md-chips {
+  padding: 9px 0 0 3px;
+}
+/* line 39, ../../../../assets/styles/states/group.sass */
+#group md-chips .md-chips ._md-chip-input-container input {
+  line-height: 41px;
+}
+/* line 44, ../../../../assets/styles/states/group.sass */
+#group #addLevelForm .md-subheader ._md-subheader-inner {
+  padding: 16px 0;
+}
+/* line 47, ../../../../assets/styles/states/group.sass */
+#group #addLevelForm .rightsSubject {
+  margin: 0 15px;
+}
+
+/* line 10, ../../../../assets/styles/states/home.sass */
+#home {
+  height: 100%;
+}
+/* line 13, ../../../../assets/styles/states/home.sass */
+#home > md-content {
+  font-size: 35px;
+  background: url(/images/working.jpg) no-repeat center;
+  background-size: cover;
+  height: 100%;
+}
+
+/* line 19, ../../../../assets/styles/states/home.sass */
+#titles {
+  color: #e63737;
+}
+
+/* Variables */
+/* Media Queries */
+@media only screen and (max-width: 450px) {
+  /* line 20, ../../../../assets/styles/states/objects.sass */
+  #objects {
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 451px) {
+  /* line 24, ../../../../assets/styles/states/objects.sass */
+  #objects {
+    padding: 70px 50px;
+  }
+}
+/* Elements */
+/* line 30, ../../../../assets/styles/states/objects.sass */
+#objects {
+  background: url(/images/background20.jpg) center;
+}
+/* line 33, ../../../../assets/styles/states/objects.sass */
+#objects > * {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+/* line 39, ../../../../assets/styles/states/objects.sass */
+#objects > md-toolbar md-select:focus, #objects > md-toolbar md-select:not([disabled]):focus {
+  color: rgba(255, 255, 255, 0.87);
+}
+/* line 42, ../../../../assets/styles/states/objects.sass */
+#objects > md-toolbar md-select {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.87);
+  position: absolute;
+  right: 15px;
+  top: -5px;
+}
+/* line 49, ../../../../assets/styles/states/objects.sass */
+#objects > md-toolbar md-select ._md-select-value {
+  border-bottom-width: 1px;
+  color: rgba(255, 255, 255, 0.87);
+  border-bottom-color: rgba(255, 255, 255, 0.87);
+}
+/* line 54, ../../../../assets/styles/states/objects.sass */
+#objects > md-content {
+  height: calc(100% - 36px);
+}
+/* line 57, ../../../../assets/styles/states/objects.sass */
+#objects > md-content md-list {
+  background-color: #f5f5f5;
+  padding: 20px 5px;
+}
+/* line 61, ../../../../assets/styles/states/objects.sass */
+#objects > md-content md-list md-list-item ._md-list-item-inner .md-avatar, #objects > md-content md-list md-list-item .md-avatar {
+  width: 60px;
+  height: 60px;
+}
+/* line 65, ../../../../assets/styles/states/objects.sass */
+#objects > md-content md-list .tag {
+  background: #FF8181;
+  color: rgba(255, 255, 255, 0.87);
+  margin: 2px;
+  padding: 2px 4px;
+}
+
+/* line 10, ../../../../assets/styles/states/profile.sass */
+#profile, #group, #element {
+  background: url("/images/background8.jpg");
+  background-size: cover;
+  background-position: center;
+  /*display: flex //to center verticaly */
+  overflow-y: auto;
+}
+/* line 17, ../../../../assets/styles/states/profile.sass */
+#profile > md-content, #group > md-content, #element > md-content {
+  overflow: hidden;
+  margin: auto;
+  padding: 80px 0;
+  max-width: 500px;
+}
+/* line 23, ../../../../assets/styles/states/profile.sass */
+#profile > md-content > form, #group > md-content > form, #element > md-content > form {
+  position: relative;
+}
+/* line 26, ../../../../assets/styles/states/profile.sass */
+#profile > md-content > md-tabs, #profile > md-content > form, #group > md-content > md-tabs, #group > md-content > form, #element > md-content > md-tabs, #element > md-content > form {
+  background-color: #fff;
+}
+
+/* line 32, ../../../../assets/styles/states/profile.sass */
+#profile .md-button.reset {
+  left: 0;
+}
+
+@media only screen and (max-width: 450px) {
+  /* line 39, ../../../../assets/styles/states/profile.sass */
+  #profile > md-content, #group > md-content, #element > md-content {
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+  }
+}
+@media only screen and (min-width: 451px) {
+  /* line 47, ../../../../assets/styles/states/profile.sass */
+  #profile > md-content, #group > md-content, #element > md-content {
+    min-width: 400px;
+  }
+  /* line 50, ../../../../assets/styles/states/profile.sass */
+  #profile md-tabs.md-dynamic-height md-tabs-content-wrapper, #group md-tabs.md-dynamic-height md-tabs-content-wrapper, #element md-tabs.md-dynamic-height md-tabs-content-wrapper {
+    overflow: hidden;
+  }
+  /* line 53, ../../../../assets/styles/states/profile.sass */
+  #profile md-tabs.md-dynamic-height md-tabs-content-wrapper md-tab-content, #group md-tabs.md-dynamic-height md-tabs-content-wrapper md-tab-content, #element md-tabs.md-dynamic-height md-tabs-content-wrapper md-tab-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+@media only screen and (min-width: 620px) {
+  /* line 60, ../../../../assets/styles/states/profile.sass */
+  #profile > md-content, #group > md-content, #element > md-content {
+    min-width: 500px;
+  }
+}

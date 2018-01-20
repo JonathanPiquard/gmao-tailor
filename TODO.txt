@@ -1,0 +1,56 @@
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////************** TODO LIST **************////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+/********************************* Description *********************************
+  *                                                                            *
+  * Anything left to do ...						       *
+  *                                                                            *
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+api
+  BlueprintController
+    => create a policy to protect blueprints from users which don't have access to them : something on '/blueprint' like with jwt
+
+  blueprintTypes
+
+    BlueprintType
+
+      BlueprintTypeSchema.pre('validation', ...)
+      => any validation but none in mind right now
+
+      ModelInstancePostValidation
+      => have to be created
+
+    Input_File
+    => have to create it
+
+  models
+
+    Blueprint
+      fullBlueprintProperties
+      => instead of running over all the properties, it's better to call a static method on every BT to populate or call a method (like toModel), this static method will call the same method for every child BT
+
+      validation
+      => verify if the given defaultProfile has the property CanBeUseAsDefault == true
+
+
+assets
+  js
+    BlueprintBoard
+    => sidenav reduce icon for elements
+    => if the 'In' of the property is fullfilled by the sidenav then the 'In' point should be in an other color like just the central point to tell that the data is set
+    => maybe a tooltip to display the value or the property when the mouse is over it
+    => add every useful function to work with values e.g. square root or square
+    => add validate function to blueprint element : validate()
+    => find out how to access the value given by a BT : get()
+    => add if, else, for, ... as element type
+    => some url blueprint element : the user give an url and some optional parameters and what the url gives corresponds to the value of the element
+    => maybe fulfill the others blueprint properties like color, icon, ... somewhere
+    => something to allow the user to do some javascript (see how sketch work in paper js website)

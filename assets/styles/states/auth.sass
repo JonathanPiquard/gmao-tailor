@@ -1,0 +1,56 @@
+
+
+// ============================================================================//
+//=============================================================================//
+//                                   Auth                                      //
+//=============================================================================//
+//=============================================================================//
+
+
+#auth
+  background: url("/images/background8.jpg")
+  background-size: cover
+  background-position: center
+  display: flex
+
+  > md-content
+    width: 100%
+    overflow-x: hidden
+
+    > form
+      background-color: #fff
+      margin: 20px auto
+
+      > md-input-container
+        margin: 18px 15px
+
+      .md-button.md-upload
+        margin: 18px auto 32px auto
+        display: block
+
+      .md-button[type="submit"]
+        width: 100%
+        margin: 12px auto
+        padding: 4px 6px
+        margin: 0 auto
+
+@media only screen and (max-width: 450px)
+  #auth > md-content
+    margin: 0
+    width: 100%
+
+    > form
+      margin: 0
+      width: 100%
+
+@media only screen and (min-width: 451px)
+  #auth > md-content
+    margin: auto
+
+    > form
+      width: 400px
+      max-width: 400px
+
+@media only screen and (min-width: 750px)
+  #auth > md-content > form
+    width: calc(100% - 70px)

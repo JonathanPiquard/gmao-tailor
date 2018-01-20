@@ -1,0 +1,48 @@
+{
+  "name": "GMAO Tailor",
+  "description": "GMAO Tailor is a GMAO software which deals with custum models, functions, graphs, ...",
+  "main": "app.js",
+  "authors": [
+    "Piquard Jonathan <piquard.jonathan@protonmail.com>"
+  ],
+  "license": "All rights reserved",
+  "moduleType": [],
+  "homepage": "assets/index.html",
+  "dependencies": {
+    "font-awesome": "~4.5.0",
+    "angular": "~1.4.8",
+    "angular-material": "~1.1.0-rc1",
+    "angular-route": "~1.4.8",
+    "paper": "^0.9.25",
+    "angular-ui-router": "ui-router#^0.2.18",
+    "codemirror": "^5.14.2"
+  },
+  "exportsOverride": {
+    "font-awesome": {
+      "fonts": "fonts/*",
+      "css": "css/font-awesome.css"
+    },
+    "codemirror": {
+      "css": [
+        "lib/codemirror.css",
+        "addon/fold/foldgutter.css",
+        "addon/hint/show-hint.css"
+      ],
+      "js": [
+        "lib/codemirror.js",
+        "addon/fold/foldcode.js",
+        "addon/fold/foldgutter.js",
+        "addon/edit/matchbrackets.js",
+        "addon/edit/matchtags.js",
+        "addon/edit/closebrackets.js",
+        "addon/edit/closetag.js",
+        "addon/hint/javascript-hint.js",
+        "addon/hint/show-hint.js",
+        "addon/runmode/colorize.js"
+      ]
+    }
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.8"
+  }
+}

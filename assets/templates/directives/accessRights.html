@@ -1,0 +1,138 @@
+
+
+<div class="access-rights">
+
+
+  <md-list flex>
+    <md-subheader class="md-no-sticky">Author</md-subheader>
+    <md-list-item class="md-3-line">
+      <img ng-src="/avatars/users/{{author._id}}" class="md-avatar" />
+      <div class="md-list-item-text" layout="column">
+        <h3>{{author.name}}</h3>
+
+        <div layout="row" ng-repeat="model in models">
+          <h4 class="capitalize">{{model.name}}</h4>
+
+          <md-checkbox ng-repeat="right in model.rights" ng-disabled="true" ng-model="checked">
+            <md-tooltip md-direction="bottom">{{rights[right].name}}</md-tooltip>
+            <i class="fa {{rights[right].class}}" aria-hidden="true"></i>
+          </md-checkbox>
+
+        </div>
+
+      </div>
+    </md-list-item>
+
+    <md-subheader class="md-no-sticky">Everyone</md-subheader>
+    <md-list-item class="md-3-line">
+      <img ng-src="/avatars/users/default" class="md-avatar" />
+      <div class="md-list-item-text" layout="column">
+        <h3>Everyone</h3>
+
+        <div layout="row" ng-repeat="model in models">
+          <h4 class="capitalize">{{model.name}}</h4>
+
+          <md-checkbox ng-repeat="right in model.rights" ng-model="access.public[model][right]">
+            <md-tooltip md-direction="bottom">{{rights[right].name}}</md-tooltip>
+            <i class="fa {{rights[right].class}}" aria-hidden="true"></i>
+          </md-checkbox>
+        </div>
+
+      </div>
+    </md-list-item>
+
+  </md-list>
+
+
+  <md-tabs md-no-pagination md-dynamic-height md-stretch-tab='always' md-center-tabs>
+    <md-tab ng-repeat="type in [ 'user', 'group' ]">
+      <md-tab-label>
+        <md-tooltip md-direction="bottom" class="capitalize">{{type + 's'}}</md-tooltip>
+        <i class="fa fa-{{type}}" aria-hidden="true"></i>
+      </md-tab-label>
+      <md-tab-body>
+        <md-list flex>
+          <md-subheader class="md-no-sticky capitalize">Add {{type}} Access</md-subheader>
+          <md-list-item class="md-3-line">
+            <img ng-if="Access[type].contacts[0]" ng-src="/avatars/{{type + 's/' + Access[type].contacts[0]._id}}" ng-show="Access[type].contacts[0]" class="md-avatar" />
+            <div class="md-list-item-text" layout="column">
+              <h3 layout="row">
+                <md-chips flex class="md-contact-chips" ng-model="Access[type].contacts" md-require-match="true" md-autocomplete-snap md-on-add="Access[type].load()" md-on-remove="Access[type].clear()">
+                  <md-autocomplete ng-disabled="Access[type].contacts[0]" ng-show="!Access[type].contacts[0]" md-menu-class="md-contact-chips-suggestions" md-selected-item="Access[type].selectedItem" md-search-text="Access[type].searchText"
+                  md-items="contact in Contacts['all' + type.charAt(0).toUpperCase() + type.slice(1) + 's'] | filter:Access[type].filter" md-no-cache="true" md-min-length="0"
+                  md-autoselect="true" placeholder="{{type.charAt(0).toUpperCase() + type.slice(1)}}">
+                    <div class="md-contact-suggestion">
+                      <img ng-src="avatars/{{type + 's/' + contact._id}}" alt="{{contact.name}}" />
+                      <span class="md-contact-name">{{contact.name}}</span>
+                    </div>
+                  </md-autocomplete>
+                  <md-chip-template>{{$chip.name}}</md-chip-template>
+                </md-chips>
+
+                <md-button ng-click="Access[type].addContact()" ng-disabled="!Access[type].contacts[0]">
+                  <md-tooltip md-direction="left" class="capitalize">Add {{type}}</md-tooltip>
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </md-button>
+              </h3>
+
+              <div layout="row" ng-repeat="model in models" ng-show="Access[type].contacts[0]">
+                <h4 class="capitalize">{{model.name}}</h4>
+
+                <md-checkbox ng-repeat="right in model.rights" ng-model="Access[type].contact.access[model][right]">
+                  <md-tooltip md-direction="bottom">{{rights[right].name}}</md-tooltip>
+                  <i class="fa {{rights[right].class}}" aria-hidden="true"></i>
+                </md-checkbox>
+              </div>
+
+            </div>
+          </md-list-item>
+
+
+          <md-subheader class="md-no-sticky">Users ({{access[type + 's'].length}})</md-subheader>
+          <div layout="row" class="search" ng-show="access[type + 's'].length !== 0">
+            <md-input-container md-no-float class="md-block flex">
+              <input ng-disabled="access[type + 's'].length === 0" ng-model="search.text[type]" placeholder="Search ...">
+            </md-input-container>
+            <md-input-container>
+              <label>by</label>
+              <md-select ng-disabled="access[type + 's'].length === 0" ng-model="search.select[type]" aria-label='Search {{type}} ...'>
+                <md-option selected value='$'>
+                  All
+                </md-option>
+                <md-option value='user.name'>
+                  Name
+                </md-option>
+                <md-option value='user._id'>
+                  Id
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <md-list-item class="md-2-line" ng-repeat="contact in access[type + 's'] | filter:searchFilter(search.select[type], search.text[type])">
+            <img class="md-avatar" ng-src="/avatars/{{type + 's/' + contact.user._id}}" />
+            <div class="md-list-item-text" layout="column">
+              <h3>{{contact.user.name}}</h3>
+              <md-button ng-click="Access[type].removeContact(contact)">
+                <md-tooltip md-direction="left" class="capitalize">Remove {{type}}</md-tooltip>
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </md-button>
+              <div layout="row" ng-repeat="model in models">
+                <h4 class="capitalize">{{model.name}}</h4>
+
+                <md-checkbox ng-repeat="right in model.rights" ng-model="contact.access[model][right]">
+                  <md-tooltip md-direction="bottom">{{rights[right].name}}</md-tooltip>
+                  <i class="fa {{rights[right].class}}" aria-hidden="true"></i>
+                </md-checkbox>
+              </div>
+
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-tab-body>
+    </md-tab>
+
+
+  </md-tabs>
+
+
+</div>

@@ -1,0 +1,448 @@
+
+
+// ============================================================================//
+//=============================================================================//
+//                                    App                                      //
+//=============================================================================//
+//=============================================================================//
+
+
+
+/* Variables */
+
+$white: rgba(255, 255, 255, 0.87)
+
+$white-hover: rgba(245, 245, 245, 0.87)
+
+$primary: #3F51B5
+
+$primary-hover: #37479e
+
+$success: #33FF7A
+
+$success-hover: #33FF7A
+
+$warn: #FF5722
+
+$warn-hover: #d54b1f
+
+$error: #ED4242
+
+$error-hover: #d53d3d
+
+$black: rgba(0, 0, 0, 0.87)
+
+$black-hover: rgba(15, 15, 15, 0.87)
+
+$grey: rgba(0, 0, 0, 0.64)
+
+$red-purple: #d92663
+
+$cyan: #04B6A5
+
+
+/* Media queries */
+
+@media (min-width: 371px) and (max-width: 959px)
+  md-toast._md-left
+    left: 0
+
+  md-toast._md-bottom
+    bottom: 0
+
+  md-toast
+    right: auto
+    max-width: auto
+    min-width: 304px
+    width: auto
+    padding: 8px
+
+    .md-toast-content
+      padding: 0 18px
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: landscape)
+  #view-container
+    height: calc(100vh - 48px)
+
+  md-sidenav, md-sidenav.md-sidenav-left, md-sidenav.md-sidenav-right
+    margin-top: 48px
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: portrait)
+  #view-container
+    height: calc(100vh - 56px)
+
+  md-sidenav, md-sidenav.md-sidenav-left, md-sidenav.md-sidenav-right
+    margin-top: 56px
+
+@media only screen and (min-width: 960px)
+  #view-container
+    height: calc(100vh - 64px)
+
+  md-sidenav, md-sidenav.md-sidenav-left, md-sidenav.md-sidenav-right
+    margin-top: 64px
+
+@media (max-width: 370px)
+  md-sidenav
+    width: 100%
+    min-width: 100%
+    max-width: 100%
+
+@media (min-width: 371px) and (max-width: 456px)
+  md-sidenav
+    width: 320px
+    min-width: 320px
+    max-width: 320px
+
+@media (min-width: 640px)
+  #blueprint > md-backdrop
+    display: none
+
+@media (min-width: 750px)
+  #view.sidenavLeftOpen > div:not(#blueprint)
+    margin-left: 320px
+
+  #view-container > div > md-backdrop
+    display: none
+
+
+
+/* Elements */
+
+html, body
+  overflow: hidden
+
+button > span:focus
+  outline: 0
+
+.category
+  padding: 0 12px
+  height: 48px
+  line-height: 48px
+  font-size: 16px
+  font-weight: 500
+  display: block
+
+  > .icon
+    margin: 0 0 0 -12px
+
+.sub-category
+  height: 36px
+  line-height: 36px
+  padding: 0 10px
+  margin: 8px 0
+
+  > .icon
+    margin: 0 0 0 -10px
+
+.category, .sub-category
+  position: relative
+
+  > .icon
+    width: 36px
+    height: inherit
+    line-height: inherit
+    text-align: center
+
+  > .actions
+    position: absolute
+    top: 0
+    height: inherit
+
+    > .md-button
+      height: inherit
+
+.actions.right
+  right: 0
+
+.actions > .md-button, .md-list-item-text .md-button
+  margin: 0
+  width: 36px
+  height: 36px
+  min-width: 36px
+  min-height: 36px
+  line-height: 36px
+
+.padding-content
+  > .category
+    margin: 0
+
+  > .sub-category
+    margin: 0
+
+.padding-content
+
+  > *
+    margin: 18px 15px
+
+  > .avatar-container
+    margin: 0
+    padding: 16px
+
+  > md-list-item
+    padding: 0 8px
+
+  > md-list
+    margin: 0
+
+    > md-list-item
+      padding: 0 8px
+
+  > form
+    margin: 0
+
+    > *
+      margin: 18px 15px
+
+  > .md-button
+    margin: 0 auto
+    width: 100%
+    padding: 6px 0
+
+  > .md-button.reset
+    position: absolute
+    margin: 0
+    top: 0
+    right: 0
+    width: 36px
+    min-width: 36px
+    color: #757575
+
+.search
+  margin-bottom: -40px
+  padding: 0 15px
+
+button.md-button, .md-button
+  border-radius: 0
+
+  .md-ripple-container
+    border-radius: 0
+
+.right
+  position: absolute
+  right: 10px
+
+.center
+  text-align: center
+
+.badge
+  padding: 0.2em 0.4em
+  font-size: small
+  border-radius: 0
+
+.md-contact-suggestion
+  > img
+    width: 40px
+    margin-bottom: 8px
+
+  > .md-contact-name
+    line-height: 56px
+    font-size: 16px
+
+.md-chips md-chip, .md-chips:not(.md-readonly) md-chip:not(.md-readonly)
+  border-radius: 0
+
+  ._md-chip-content
+    padding: 0 10px
+
+.md-contact-chips .md-chips md-chip .md-contact-avatar img
+  width: 32px
+  margin-left: -10px
+  margin-right: 2px
+  border-radius: 0
+
+md-tab-content.md-no-scroll
+  bottom: 0
+
+md-toast
+  border-radius: 0
+
+  .md-toast-content
+    border-radius: 0
+
+#global-container
+  height: 100%
+
+  #appHeader
+    md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar)
+      background-color: $cyan
+
+      a.md-default-theme:not(.md-button):hover, a:not(.md-button):hover
+        color: $white
+
+  #view-container
+
+    #view
+      height: 100%
+      width: 100%
+
+      > *
+        height: 100%
+
+
+.capitalize
+  text-transform: capitalize
+
+md-dialog
+  border-radius: 0
+
+  md-dialog-content
+    padding: 16px
+
+  md-dialog-actions
+    margin: 16px -8px -8px 0
+
+  button.md-button, .md-button
+    border-radius: 0
+
+    .md-ripple-container
+      border-radius: 0
+
+
+//List Toolbar
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-success, md-toolbar:not(.md-menu-toolbar).md-success
+  color: $white
+  background-color: $success
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-primary, md-toolbar:not(.md-menu-toolbar).md-primary
+  color: $white
+  background-color: $primary
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-warn, md-toolbar:not(.md-menu-toolbar).md-warn
+  color: $white
+  background-color: $warn
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-error, md-toolbar:not(.md-menu-toolbar).md-error
+  color: $white
+  background-color: $error
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar).md-default, md-toolbar:not(.md-menu-toolbar).md-default
+  color: $grey
+  background-color: $white
+
+
+//Buttons
+.md-button.md-raised[disabled], .md-button[disabled]
+  opacity: 0.5
+
+.md-button.md-fab.md-success, .md-button.md-raised.md-success:not([disabled]),
+.md-button.md-success, .md-button.md-raised.md-success, .md-button.md-success.md-default-theme[disabled],
+.md-button.md-raised.md-success[disabled], .md-button.md-success[disabled]
+  color: $white
+  background-color: $success
+
+.md-button.md-success:not([disabled]).md-fab.md-focused, .md-button.md-success:not([disabled]).md-raised.md-focused,
+.md-button.md-success:not([disabled]):hover, .md-button.md-raised.md-success:not([disabled]):hover
+  background-color: $success-hover
+
+.md-button.md-fab.md-primary, .md-button.md-raised.md-primary:not([disabled]),
+.md-button.md-primary, .md-button.md-raised.md-primary, .md-button.md-primary.md-default-theme[disabled],
+.md-button.md-raised.md-primary[disabled], .md-button.md-primary[disabled]
+  color: $white
+  background-color: $primary
+
+.md-button.md-primary:not([disabled]).md-fab.md-focused, .md-button.md-primary:not([disabled]).md-raised.md-focused,
+.md-button.md-primary:not([disabled]):hover, .md-button.md-raised.md-primary:not([disabled]):hover
+  background-color: $primary-hover
+
+.md-button.md-fab.md-warn, .md-button.md-raised.md-warn:not([disabled]),
+.md-button.md-warn, .md-button.md-raised.md-warn, .md-button.md-warn.md-default-theme[disabled],
+.md-button.md-raised.md-warn[disabled], .md-button.md-warn[disabled]
+  color: $white
+  background-color: $warn
+
+.md-button.md-warn:not([disabled]).md-fab.md-focused, .md-button.md-warn:not([disabled]).md-raised.md-focused,
+.md-button.md-warn:not([disabled]):hover, .md-button.md-raised.md-warn:not([disabled]):hover
+  background-color: $warn-hover
+
+.md-button.md-fab.md-error, .md-button.md-raised.md-error:not([disabled]),
+.md-button.md-error, .md-button.md-raised.md-error, .md-button.md-error.md-default-theme[disabled],
+.md-button.md-raised.md-error[disabled], .md-button.md-error[disabled]
+  color: $white
+  background-color: $error
+
+.md-button.md-error:not([disabled]).md-fab.md-focused, .md-button.md-error:not([disabled]).md-raised.md-focused,
+.md-button.md-error:not([disabled]):hover, .md-button.md-raised.md-error:not([disabled]):hover
+  background-color: $error-hover
+
+.md-button.md-fab.md-default, .md-button.md-raised.md-default:not([disabled]),
+.md-button.md-default, .md-button.md-raised.md-default, .md-button.md-default.md-default-theme[disabled],
+.md-button.md-raised.md-default[disabled], .md-button.md-default[disabled]
+  color: $grey
+  background-color: $white
+
+.md-button.md-default:not([disabled]).md-fab.md-focused, .md-button.md-default:not([disabled]).md-raised.md-focused,
+.md-button.md-default:not([disabled]):hover, .md-button.md-raised.md-default:not([disabled]):hover
+  background-color: $white-hover
+
+//Toasts
+.md-toast.md-success > .md-toast-content
+  color: $white
+  background-color: $success
+
+.md-toast.md-success:hover > .md-toast-content
+  background-color: $success-hover
+
+.md-toast.md-error > .md-toast-content
+  color: $white
+  background-color: $error
+
+.md-toast.md-error:hover > .md-toast-content
+  background-color: $error-hover
+
+.md-toast.md-default > .md-toast-content
+  color: $grey
+  background-color: $white
+
+.md-toast.md-default:hover > .md-toast-content
+  background-color: $white-hover
+
+
+//Dialogs
+md-dialog md-dialog-content:not([layout=row])>:first-child:not(.md-subheader)
+  margin-top: 18px
+
+
+//md-*-bg
+.md-primary-bg
+  color: $white
+  background-color: $primary
+
+.md-success-bg
+  color: $white
+  background-color: $success
+
+.md-warn-bg
+  color: $white
+  background-color: $warn
+
+.md-error-bg
+  color: $white
+  background-color: $error
+
+.md-default-bg
+  color: $grey
+  background-color: $white
+
+.md-red-purple-bg
+  color: $white
+  background-color: $red-purple
+
+
+//h1 to h6, span, i.fa
+.md-primary
+  color: $primary
+
+.md-success
+  color: $success
+
+.md-warn
+  color: $warn
+
+.md-error
+  color: $error
+
+.md-default
+  color: $white
+
+.md-red-purple
+  color: $red-purple

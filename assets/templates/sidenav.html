@@ -1,0 +1,297 @@
+
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-open="sidenavLeft.open" md-whiteframe="2">
+  <md-content ng-scroll scrollbar-x="false" scrollbar-y="true" scroll-config="{ overlay: true, autoResize: true, size: 'small', dragSpeed: 1.2 }">
+
+    <md-list flex>
+      <!-- User Profile -->
+      <md-list-item class="md-2-line" ui-sref="profile">
+       <img ng-src="/avatars/users/{{currentUser._id}}" class="md-avatar" alt="{{currentUser.name}}" />
+       <div class="md-list-item-text" layout="column">
+         <h3>{{currentUser.name}}</h3>
+         <p>{{currentUser.lastLoggedIn | date:'MMM d, y H:mm' }}</p>
+         <md-button id="logout" ng-click="logout()">
+           <md-tooltip md-direction="top">Log out</md-tooltip>
+           <i class="fa fa-sign-out" aria-hidden="true"></i>
+         </md-button>
+       </div>
+      </md-list-item>
+
+      <!-- Blueprint -->
+      <div class="sub-category md-default-bg">
+        <i class="icon fa fa-map-o" aria-hidden="true"></i>
+        <span>Blueprint</span>
+        <div class="actions right" layout="row">
+          <md-button ng-click="goToNew('blueprint')">
+            <md-tooltip md-direction="top">Create a new Blueprint !</md-tooltip>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </md-button>
+          <md-button ui-sref="blueprints-private">
+            <md-tooltip md-direction="top">Every Blueprints you have a personal access to !</md-tooltip>
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          </md-button>
+          <md-button ui-sref="blueprints-public">
+            <md-tooltip md-direction="top">Every Blueprints shared by the community !</md-tooltip>
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </md-button>
+        </div>
+      </div>
+
+      <!-- Elements -->
+      <div class="sub-category md-default-bg">
+        <i class="icon fa fa-map-marker" aria-hidden="true"></i>
+        <span>Element</span>
+        <div class="actions right" layout="row">
+          <md-button ng-click="goToNew('element')">
+            <md-tooltip md-direction="top">Create a new Element !</md-tooltip>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </md-button>
+          <md-button ui-sref="elements-private">
+            <md-tooltip md-direction="top">Every Elements you have a personal access to !</md-tooltip>
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          </md-button>
+          <md-button ui-sref="elements-public">
+            <md-tooltip md-direction="top">Every Elements shared by the community !</md-tooltip>
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </md-button>
+        </div>
+      </div>
+
+      <!-- Groups -->
+      <div class="sub-category md-default-bg">
+        <i class="icon fa fa-users" aria-hidden="true"></i>
+        <span>Group</span>
+        <div class="actions right" layout="row">
+          <md-button ng-click="goToNew('group')">
+            <md-tooltip md-direction="top">Create a new Group !</md-tooltip>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </md-button>
+          <md-button ui-sref="groups-private">
+            <md-tooltip md-direction="top">Every Group you are a member of !</md-tooltip>
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          </md-button>
+          <md-button ui-sref="groups-public">
+            <md-tooltip md-direction="top">Every Group shared by the community !</md-tooltip>
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </md-button>
+        </div>
+      </div>
+    </md-list>
+
+    <div id="chat" ng-show="socket.authenticated">
+      <md-tabs flex md-selected="current.tab" md-no-pagination md-dynamic-height md-stretch-tab='always' md-center-tabs>
+
+        <md-tab> <!-- ACTIVE CHAT -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Chat</md-tooltip>
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <div class="no-content" ng-show="!current.chat">
+              <p>No chat selected</p>
+            </div>
+            <form name="chatForm" ng-show="current.chat" ng-submit="send()">
+              <md-content class="padding-content" layout="column">
+
+                <md-list-item class="md-2-line"> <!-- Current Chat -->
+                  <img ng-src="/avatars/{{(current.chat.groupId) ? 'groups/' + (current.chat.groupId || 'default') : 'users/' + (current.chat.members[0]._id || 'default')}}" class="md-avatar" />
+                  <div class="md-list-item-text" layout="column">
+                    <h3>{{current.chat.name}}</h3>
+                    <h4>
+                      <span ng-repeat="member in current.chat.members" ng-show="member.status || current.chat.members.length <= 5">
+                        <span>{{member.name}}</span>
+                        <span class="status" ng-class="{ 'connected': member.status, 'disconnected': !member.status }"></span>
+                      </span>
+                    </h4>
+                    <p>{{current.chat.messages[current.chat.messages.length - 1].content}}</p>
+                    <div class="actions right">
+                      <md-button ng-show="current.chat.groupId" ui-sref="group({ id: current.chat._id })">
+                        <md-tooltip md-direction="top">See the group</md-tooltip>
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-show="!current.chat.groupId" ng-click="updateChat($event, current.chat)">
+                        <md-tooltip md-direction="top">Update</md-tooltip>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-show="!current.chat.groupId" ng-click="quitChat(current.chat)">
+                        <md-tooltip md-direction="top">Quit the chat</md-tooltip>
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-list-item>
+
+                <md-list id="messages"> <!-- Messages -->
+                  <md-list-item class="md-2-line message" ng-repeat="msg in current.chat.messages">
+                    <img ng-if="msg.author !== currentUser._id" ng-src="/avatars/users/{{msg.author}}" class="md-avatar" />
+                    <div class="md-list-item-text" layout="column">
+                      <h3 ng-class="{ 'yourself': msg.author === currentUser._id }">{{msg.content}}</h3>
+                      <p>{{(msg.author === currentUser._id) ? 'Yourself' : Contacts.allUsersObject[msg.author].name}}, on {{msg.createdAt | date:'MMM d, H:mm'}}</p>
+                    </div>
+                    <img ng-if="msg.author === currentUser._id" ng-src="/avatars/users/{{msg.author}}" class="md-avatar" />
+                  </md-list-item>
+                </md-list>
+
+                <md-input-container layout="column" class="md-block">
+                  <input name="message" ng-model="current.message" required maxlength="1000" aria-label="New message content" />
+                </md-input-container>
+
+                <md-button type="submit" class="md-success" ng-disabled="chatForm.$invalid">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                  <span>Send</span>
+                </md-button>
+              </md-content>
+            </form>
+          </md-tab-body>
+        </md-tab>
+
+        <md-tab> <!-- USERS -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Users</md-tooltip>
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+              <div class="no-content" ng-show="chats.length === 0">
+                <p>No chat with others users</p>
+              </div>
+              <md-list>
+                <div layout="row" class="search" ng-show="chats.length > 0">
+                  <md-input-container md-no-float class="md-block flex">
+                    <input ng-disabled='chats.length === 0' ng-model="search.text.chats" placeholder="Search ...">
+                  </md-input-container>
+                </div>
+                <md-list-item class="md-2-line" ng-class="{ 'active': current.chat._id === chat._id }" ng-repeat="chat in chats | filter:search.text.chats">
+                  <img ng-src="/avatars/users/{{chat.members[0]._id || 'default'}}" class="md-avatar" />
+                  <div class="md-list-item-text" layout="column">
+                    <h3>{{chat.name || chat.members[0].name}}</h3>
+                    <h4>
+                      <span ng-repeat="member in chat.members" ng-if="member.status || chat.members.length <= 5">
+                        <span>{{member.name}}</span>
+                        <span class="status" ng-class="{ 'connected': member.status, 'disconnected': !member.status }"></span>
+                      </span>
+                    </h4>
+                    <p>{{chat.messages[chat.messages.length - 1].content}}</p>
+                    <div class="actions right">
+                      <md-button ng-click="loadChat(chat)">
+                        <md-tooltip md-direction="top">Load</md-tooltip>
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-click="updateChat($event, chat)">
+                        <md-tooltip md-direction="top">Update</md-tooltip>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </md-button>
+                      <md-button ng-click="quitChat(chat)">
+                        <md-tooltip md-direction="top">Quit the chat</md-tooltip>
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+        <md-tab> <!-- GROUPS -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Groups</md-tooltip>
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="padding-content" layout="column">
+              <div class="no-content" ng-show="chatGroups.length === 0">
+                <p>No chat over groups you are a member of</p>
+              </div>
+              <md-list>
+                <div layout="row" class="search" ng-show="chatGroups.length > 0">
+                  <md-input-container md-no-float class="md-block flex">
+                    <input ng-disabled='chatGroups.length === 0' ng-model="search.text.chatGroups" placeholder="Search ...">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>by</label>
+                    <md-select ng-disabled='chatGroups.length === 0' ng-model="search.select.chatGroups" aria-label='Search chat with group ...'>
+                      <md-option selected value='$'>
+                        All
+                      </md-option>
+                      <md-option value='name'>
+                        Group Name
+                      </md-option>
+                      <md-option value='members.name'>
+                        Member Name
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <md-list-item class="md-2-line" ng-class="{ 'active': current.chat._id === chatGroup._id }" ng-repeat="chatGroup in chatGroups | filter:searchFilter(search.select.chatGroups, search.text.chatGroups)">
+                  <img ng-src="/avatars/groups/{{chatGroup.groupId || 'default'}}" class="md-avatar" />
+                  <div class="md-list-item-text" layout="column">
+                    <h3>{{chatGroup.name}}</h3>
+                    <h4>
+                      <span ng-repeat="member in chatGroup.members" ng-show="member.status || chatGroup.members.length <= 5">
+                        <span>{{member.name}}</span>
+                        <span class="status" ng-class="{ 'connected': member.status, 'disconnected': !member.status }"></span>
+                      </span>
+                    </h4>
+                    <p>{{chatGroup.messages[chatGroup.messages.length - 1].content}}</p>
+                    <div class="actions right">
+                      <md-button ng-click="loadChat(chatGroup)">
+                        <md-tooltip md-direction="top">Load</md-tooltip>
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                      </md-button>
+                    </div>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+
+        <md-tab> <!-- ADD CHAT -->
+          <md-tab-label>
+            <md-tooltip md-direction="bottom">Add Chat</md-tooltip>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </md-tab-label>
+          <md-tab-body>
+            <form name="addChatForm">
+              <md-content class="padding-content" layout="column">
+
+                <md-input-container class="md-block" ng-show="addChat.members.length > 1">
+                  <label>Name</label>
+                  <input type='string' name="name" ng-model='addChat.name' ng-maxlength="25">
+                  <div ng-messages="addChatForm.name.$error" ng-show="addChatForm.name.$invalid && addChatForm.name.$touched">
+                    <div ng-message="maxlength">
+                      This is too long : maximum 25.
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-chips class="md-contact-chips" ng-model="addChat.members" md-require-match="true" md-autocomplete-snap>
+                  <md-autocomplete md-menu-class="md-contact-chips-suggestions" md-selected-item="addChat.selectedItem" md-search-text="addChat.searchText"
+                  md-items="user in Contacts.allUsers | filter:addChat.filter" md-no-cache="true" md-min-length="0"
+                  md-autoselect="true" placeholder="Users">
+                    <div class="md-contact-suggestion">
+                      <img ng-src="avatars/users/{{user._id}}" alt="{{user.name}}" />
+                      <span class="md-contact-name">{{user.name}}</span>
+                    </div>
+                  </md-autocomplete>
+                  <md-chip-template>
+                    <div class="md-contact-avatar"><img ng-src="avatars/users/{{$chip._id}}" /></div>
+                    <div class="md-contact-name">{{$chip.name}}</div>
+                  </md-chip-template>
+                </md-chips>
+
+                <md-button type="submit" class="md-success" ng-click="addChat.submit()" ng-disabled="addChat.members.length === 0">
+                  <i class="fa fa-comments-o" aria-hidden="true"></i>
+                  <span>Add Chat</span>
+                </md-button>
+
+              </md-content>
+            </form>
+          </md-tab-body>
+        </md-tab>
+
+      </md-tabs>
+    </div>
+
+  </md-content>
+</md-sidenav>
